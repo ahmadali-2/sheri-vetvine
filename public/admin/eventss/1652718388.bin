@@ -1,0 +1,2330 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: May 10, 2022 at 12:38 PM
+-- Server version: 5.7.38
+-- PHP Version: 7.1.33
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `leadconc_vetdblcvine`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ads`
+--
+
+CREATE TABLE `ads` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `campaign_id` bigint(20) UNSIGNED NOT NULL,
+  `ad_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ad_media` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `banner_image_url` text COLLATE utf8mb4_unicode_ci,
+  `status` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1' COMMENT '0.disable,1.enable',
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ads`
+--
+
+INSERT INTO `ads` (`id`, `campaign_id`, `ad_name`, `ad_media`, `banner_image_url`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(3, 1, 'Margaret Prince', '1651076915.png', 'https://www.gepehegoxono.us', '1', NULL, '2022-04-27 21:28:35', '2022-04-27 21:28:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ad_campaigns`
+--
+
+CREATE TABLE `ad_campaigns` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `campaign_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `start_date` date DEFAULT NULL,
+  `is_end_on_specific_date` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '0.unlimited,1.end on specific date',
+  `end_date` date DEFAULT NULL,
+  `total_views_allowed` bigint(20) NOT NULL,
+  `total_clicks_allowed` bigint(20) NOT NULL,
+  `min_ctr` bigint(20) DEFAULT NULL,
+  `member_level_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `network_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `status` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1' COMMENT '0.disable,1.enable',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ad_campaigns`
+--
+
+INSERT INTO `ad_campaigns` (`id`, `campaign_name`, `start_date`, `is_end_on_specific_date`, `end_date`, `total_views_allowed`, `total_clicks_allowed`, `min_ctr`, `member_level_id`, `network_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Cara Jonesss', '2022-04-27', '0', '2022-05-05', 11, 27, 48, NULL, 11, '1', '2022-04-27 21:19:26', '2022-04-27 21:19:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `announcements`
+--
+
+CREATE TABLE `announcements` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `announcement_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `buy_member_ship_plans`
+--
+
+CREATE TABLE `buy_member_ship_plans` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `transaction_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` double(8,2) NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `member_ship_plan_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `buy_member_ship_plans`
+--
+
+INSERT INTO `buy_member_ship_plans` (`id`, `transaction_id`, `amount`, `user_id`, `member_ship_plan_id`, `created_at`, `updated_at`) VALUES
+(1, 'ch_3KpouBCsVtSxdbpX00u8hbIi', 839.00, 7, 1, '2022-04-18 12:21:52', '2022-04-18 12:21:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category_events`
+--
+
+CREATE TABLE `category_events` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `category_events`
+--
+
+INSERT INTO `category_events` (`id`, `category_title`, `created_at`, `updated_at`) VALUES
+(1, 'Cardiology', '2022-04-15 19:44:22', '2022-04-27 21:45:41'),
+(3, 'Dermatology', '2022-04-15 19:44:50', '2022-04-27 21:45:00'),
+(4, 'Radiology', '2022-04-27 21:44:10', '2022-04-27 21:44:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category_forums`
+--
+
+CREATE TABLE `category_forums` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `category_forums`
+--
+
+INSERT INTO `category_forums` (`id`, `category_title`, `created_at`, `updated_at`) VALUES
+(1, 'Specialty Topics', '2022-04-11 15:36:49', '2022-04-11 15:37:06'),
+(2, 'Practice Management', '2022-04-19 12:48:06', '2022-04-19 12:48:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contactus`
+--
+
+CREATE TABLE `contactus` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `countries`
+--
+
+CREATE TABLE `countries` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `country_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `countries`
+--
+
+INSERT INTO `countries` (`id`, `country_name`, `created_at`, `updated_at`) VALUES
+(1, 'Afghanistan', NULL, NULL),
+(2, 'Albania', NULL, NULL),
+(3, 'Algeria', NULL, NULL),
+(4, 'American Samoa', NULL, NULL),
+(5, 'Andorra', NULL, NULL),
+(6, 'Angola', NULL, NULL),
+(7, 'Anguilla', NULL, NULL),
+(8, 'Antarctica', NULL, NULL),
+(9, 'Antigua and Barbuda', NULL, NULL),
+(10, 'Argentina', NULL, NULL),
+(11, 'Armenia', NULL, NULL),
+(12, 'Aruba', NULL, NULL),
+(13, 'Australia', NULL, NULL),
+(14, 'Austria', NULL, NULL),
+(15, 'Azerbaijan', NULL, NULL),
+(16, 'Bahamas (the)', NULL, NULL),
+(17, 'Bahrain', NULL, NULL),
+(18, 'Bangladesh', NULL, NULL),
+(19, 'Barbados', NULL, NULL),
+(20, 'Belarus', NULL, NULL),
+(21, 'Belgium', NULL, NULL),
+(22, 'Belize', NULL, NULL),
+(23, 'Benin', NULL, NULL),
+(24, 'Bermuda', NULL, NULL),
+(25, 'Bhutan', NULL, NULL),
+(26, 'Bolivia (Plurinational State of)', NULL, NULL),
+(27, 'Bonaire, Sint Eustatius and Saba', NULL, NULL),
+(28, 'Bosnia and Herzegovina', NULL, NULL),
+(29, 'Botswana', NULL, NULL),
+(30, 'Bouvet Island', NULL, NULL),
+(31, 'Brazil', NULL, NULL),
+(32, 'British Indian Ocean Territory (the)', NULL, NULL),
+(33, 'Brunei Darussalam', NULL, NULL),
+(34, 'Bulgaria', NULL, NULL),
+(35, 'Burkina Faso', NULL, NULL),
+(36, 'Burundi', NULL, NULL),
+(37, 'Cabo Verde', NULL, NULL),
+(38, 'Cambodia', NULL, NULL),
+(39, 'Cameroon', NULL, NULL),
+(40, 'Canada', NULL, NULL),
+(41, 'Cayman Islands (the)', NULL, NULL),
+(42, 'Central African Republic (the)', NULL, NULL),
+(43, 'Chad', NULL, NULL),
+(44, 'Chile', NULL, NULL),
+(45, 'China', NULL, NULL),
+(46, 'Christmas Island', NULL, NULL),
+(47, 'Cocos (Keeling) Islands (the)', NULL, NULL),
+(48, 'Colombia', NULL, NULL),
+(49, 'Comoros (the)', NULL, NULL),
+(50, 'Congo (the Democratic Republic of the)', NULL, NULL),
+(51, 'Congo (the)', NULL, NULL),
+(52, 'Cook Islands (the)', NULL, NULL),
+(53, 'Costa Rica', NULL, NULL),
+(54, 'Croatia', NULL, NULL),
+(55, 'Cuba', NULL, NULL),
+(56, 'Curaçao', NULL, NULL),
+(57, 'Cyprus', NULL, NULL),
+(58, 'Czechia', NULL, NULL),
+(59, 'Côte d\'Ivoire', NULL, NULL),
+(60, 'Denmark', NULL, NULL),
+(61, 'Djibouti', NULL, NULL),
+(62, 'Dominica', NULL, NULL),
+(63, 'Dominican Republic (the)', NULL, NULL),
+(64, 'Ecuador', NULL, NULL),
+(65, 'Egypt', NULL, NULL),
+(66, 'El Salvador', NULL, NULL),
+(67, 'Equatorial Guinea', NULL, NULL),
+(68, 'Eritrea', NULL, NULL),
+(69, 'Estonia', NULL, NULL),
+(70, 'Eswatini', NULL, NULL),
+(71, 'Ethiopia', NULL, NULL),
+(72, 'Falkland Islands (the) [Malvinas]', NULL, NULL),
+(73, 'Faroe Islands (the)', NULL, NULL),
+(74, 'Fiji', NULL, NULL),
+(75, 'Finland', NULL, NULL),
+(76, 'France', NULL, NULL),
+(77, 'French Guiana', NULL, NULL),
+(78, 'French Polynesia', NULL, NULL),
+(79, 'French Southern Territories (the)', NULL, NULL),
+(80, 'Gabon', NULL, NULL),
+(81, 'Gambia (the)', NULL, NULL),
+(82, 'Georgia', NULL, NULL),
+(83, 'Germany', NULL, NULL),
+(84, 'Ghana', NULL, NULL),
+(85, 'Gibraltar', NULL, NULL),
+(86, 'Greece', NULL, NULL),
+(87, 'Greenland', NULL, NULL),
+(88, 'Grenada', NULL, NULL),
+(89, 'Guadeloupe', NULL, NULL),
+(90, 'Guam', NULL, NULL),
+(91, 'Guatemala', NULL, NULL),
+(92, 'Guernsey', NULL, NULL),
+(93, 'Guinea', NULL, NULL),
+(94, 'Guinea-Bissau', NULL, NULL),
+(95, 'Guyana', NULL, NULL),
+(96, 'Haiti', NULL, NULL),
+(97, 'Heard Island and McDonald Islands', NULL, NULL),
+(98, 'Holy See (the)', NULL, NULL),
+(99, 'Honduras', NULL, NULL),
+(100, 'Hong Kong', NULL, NULL),
+(101, 'Hungary', NULL, NULL),
+(102, 'Iceland', NULL, NULL),
+(103, 'India', NULL, NULL),
+(104, 'Indonesia', NULL, NULL),
+(105, 'Iran (Islamic Republic of)', NULL, NULL),
+(106, 'Iraq', NULL, NULL),
+(107, 'Ireland', NULL, NULL),
+(108, 'Isle of Man', NULL, NULL),
+(109, 'Israel', NULL, NULL),
+(110, 'Italy', NULL, NULL),
+(111, 'Jamaica', NULL, NULL),
+(112, 'Japan', NULL, NULL),
+(113, 'Jersey', NULL, NULL),
+(114, 'Jordan', NULL, NULL),
+(115, 'Kazakhstan', NULL, NULL),
+(116, 'Kenya', NULL, NULL),
+(117, 'Kiribati', NULL, NULL),
+(118, 'Korea (the Democratic People\'s Republic of)', NULL, NULL),
+(119, 'Korea (the Republic of)', NULL, NULL),
+(120, 'Kuwait', NULL, NULL),
+(121, 'Kyrgyzstan', NULL, NULL),
+(122, 'Lao People\'s Democratic Republic (the)', NULL, NULL),
+(123, 'Latvia', NULL, NULL),
+(124, 'Lebanon', NULL, NULL),
+(125, 'Lesotho', NULL, NULL),
+(126, 'Liberia', NULL, NULL),
+(127, 'Libya', NULL, NULL),
+(128, 'Liechtenstein', NULL, NULL),
+(129, 'Lithuania', NULL, NULL),
+(130, 'Luxembourg', NULL, NULL),
+(131, 'Macao', NULL, NULL),
+(132, 'Madagascar', NULL, NULL),
+(133, 'Malawi', NULL, NULL),
+(134, 'Malaysia', NULL, NULL),
+(135, 'Maldives', NULL, NULL),
+(136, 'Mali', NULL, NULL),
+(137, 'Malta', NULL, NULL),
+(138, 'Marshall Islands (the)', NULL, NULL),
+(139, 'Martinique', NULL, NULL),
+(140, 'Mauritania', NULL, NULL),
+(141, 'Mauritius', NULL, NULL),
+(142, 'Mayotte', NULL, NULL),
+(143, 'Mexico', NULL, NULL),
+(144, 'Micronesia (Federated States of)', NULL, NULL),
+(145, 'Moldova (the Republic of)', NULL, NULL),
+(146, 'Monaco', NULL, NULL),
+(147, 'Mongolia', NULL, NULL),
+(148, 'Montenegro', NULL, NULL),
+(149, 'Montserrat', NULL, NULL),
+(150, 'Morocco', NULL, NULL),
+(151, 'Mozambique', NULL, NULL),
+(152, 'Myanmar', NULL, NULL),
+(153, 'Namibia', NULL, NULL),
+(154, 'Nauru', NULL, NULL),
+(155, 'Nepal', NULL, NULL),
+(156, 'Netherlands (the)', NULL, NULL),
+(157, 'New Caledonia', NULL, NULL),
+(158, 'New Zealand', NULL, NULL),
+(159, 'Nicaragua', NULL, NULL),
+(160, 'Niger (the)', NULL, NULL),
+(161, 'Nigeria', NULL, NULL),
+(162, 'Niue', NULL, NULL),
+(163, 'Norfolk Island', NULL, NULL),
+(164, 'Northern Mariana Islands (the)', NULL, NULL),
+(165, 'Norway', NULL, NULL),
+(166, 'Oman', NULL, NULL),
+(167, 'Pakistan', NULL, NULL),
+(168, 'Palau', NULL, NULL),
+(169, 'Palestine, State of', NULL, NULL),
+(170, 'Panama', NULL, NULL),
+(171, 'Papua New Guinea', NULL, NULL),
+(172, 'Paraguay', NULL, NULL),
+(173, 'Peru', NULL, NULL),
+(174, 'Philippines (the)', NULL, NULL),
+(175, 'Pitcairn', NULL, NULL),
+(176, 'Poland', NULL, NULL),
+(177, 'Portugal', NULL, NULL),
+(178, 'Puerto Rico', NULL, NULL),
+(179, 'Qatar', NULL, NULL),
+(180, 'Republic of North Macedonia', NULL, NULL),
+(181, 'Romania', NULL, NULL),
+(182, 'Russian Federation (the)', NULL, NULL),
+(183, 'Rwanda', NULL, NULL),
+(184, 'Réunion', NULL, NULL),
+(185, 'Saint Barthélemy', NULL, NULL),
+(186, 'Saint Helena, Ascension and Tristan da Cunha', NULL, NULL),
+(187, 'Saint Kitts and Nevis', NULL, NULL),
+(188, 'Saint Lucia', NULL, NULL),
+(189, 'Saint Martin (French part)', NULL, NULL),
+(190, 'Saint Pierre and Miquelon', NULL, NULL),
+(191, 'Saint Vincent and the Grenadines', NULL, NULL),
+(192, 'Samoa', NULL, NULL),
+(193, 'San Marino', NULL, NULL),
+(194, 'Sao Tome and Principe', NULL, NULL),
+(195, 'Saudi Arabia', NULL, NULL),
+(196, 'Senegal', NULL, NULL),
+(197, 'Serbia', NULL, NULL),
+(198, 'Seychelles', NULL, NULL),
+(199, 'Sierra Leone', NULL, NULL),
+(200, 'Singapore', NULL, NULL),
+(201, 'Sint Maarten (Dutch part)', NULL, NULL),
+(202, 'Slovakia', NULL, NULL),
+(203, 'Slovenia', NULL, NULL),
+(204, 'Solomon Islands', NULL, NULL),
+(205, 'Somalia', NULL, NULL),
+(206, 'South Africa', NULL, NULL),
+(207, 'South Georgia and the South Sandwich Islands', NULL, NULL),
+(208, 'South Sudan', NULL, NULL),
+(209, 'Spain', NULL, NULL),
+(210, 'Sri Lanka', NULL, NULL),
+(211, 'Sudan (the)', NULL, NULL),
+(212, 'Suriname', NULL, NULL),
+(213, 'Svalbard and Jan Mayen', NULL, NULL),
+(214, 'Sweden', NULL, NULL),
+(215, 'Switzerland', NULL, NULL),
+(216, 'Syrian Arab Republic', NULL, NULL),
+(217, 'Taiwan', NULL, NULL),
+(218, 'Tajikistan', NULL, NULL),
+(219, 'Tanzania, United Republic of', NULL, NULL),
+(220, 'Thailand', NULL, NULL),
+(221, 'Timor-Leste', NULL, NULL),
+(222, 'Togo', NULL, NULL),
+(223, 'Tokelau', NULL, NULL),
+(224, 'Tonga', NULL, NULL),
+(225, 'Trinidad and Tobago', NULL, NULL),
+(226, 'Tunisia', NULL, NULL),
+(227, 'Turkey', NULL, NULL),
+(228, 'Turkmenistan', NULL, NULL),
+(229, 'Turks and Caicos Islands (the)', NULL, NULL),
+(230, 'Tuvalu', NULL, NULL),
+(231, 'Uganda', NULL, NULL),
+(232, 'Ukraine', NULL, NULL),
+(233, 'United Arab Emirates (the)', NULL, NULL),
+(234, 'United Kingdom of Great Britain and Northern Ireland (the)', NULL, NULL),
+(235, 'United States Minor Outlying Islands (the)', NULL, NULL),
+(236, 'United States of America (the)', NULL, NULL),
+(237, 'Uruguay', NULL, NULL),
+(238, 'Uzbekistan', NULL, NULL),
+(239, 'Vanuatu', NULL, NULL),
+(240, 'Venezuela (Bolivarian Republic of)', NULL, NULL),
+(241, 'Viet Nam', NULL, NULL),
+(242, 'Virgin Islands (British)', NULL, NULL),
+(243, 'Virgin Islands (U.S.)', NULL, NULL),
+(244, 'Wallis and Futuna', NULL, NULL),
+(245, 'Western Sahara', NULL, NULL),
+(246, 'Yemen', NULL, NULL),
+(247, 'Zambia', NULL, NULL),
+(248, 'Zimbabwe', NULL, NULL),
+(249, 'Åland Islands', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `education`
+--
+
+CREATE TABLE `education` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `degree_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `education`
+--
+
+INSERT INTO `education` (`id`, `degree_name`, `created_at`, `updated_at`) VALUES
+(1, 'AA - Associate of Arts', NULL, NULL),
+(2, 'AAS', NULL, NULL),
+(3, 'AB - Associate in Business', NULL, NULL),
+(4, 'ACCC / AVCA - Animal Chiropractic Certification Commission / American Veterinary Chiropractic', NULL, NULL),
+(5, 'AGS', NULL, NULL),
+(6, 'AST', NULL, NULL),
+(7, 'BA - Bachelor of Arts', NULL, NULL),
+(8, 'BAA', NULL, NULL),
+(9, 'BAg - Bachelor of Agriculture', NULL, NULL),
+(10, 'BASc', NULL, NULL),
+(11, 'BBA', NULL, NULL),
+(12, 'BBus', NULL, NULL),
+(13, 'BCom', NULL, NULL),
+(14, 'BFA', NULL, NULL),
+(15, 'BS - Bachelor of Science', NULL, NULL),
+(16, 'BSA - Bachelor of Science in Agriculture', NULL, NULL),
+(17, 'BSc', NULL, NULL),
+(18, 'BVetMed - Bachelor of Veterinary Medicine', NULL, NULL),
+(19, 'BVSc - Bachelor of Veterinary Science', NULL, NULL),
+(20, 'ChD - Doctor of Chemistry', NULL, NULL),
+(21, 'CVA - Certified Veterinary Acupuncturist', NULL, NULL),
+(22, 'CVCHM - Certified Veterinary Chinese Herbal Medicine', NULL, NULL),
+(23, 'DCh - Doctor of Chemistry', NULL, NULL),
+(24, 'DrPH - Doctor of Public Health', NULL, NULL),
+(25, 'DS - Doctor of Science', NULL, NULL),
+(26, 'DVM - Doctor of Veterinary Medicine', NULL, NULL),
+(27, 'DVSc - Doctor of Veterinary Science', NULL, NULL),
+(28, 'JD - Juris Doctor', NULL, NULL),
+(29, 'MA - Master of Arts', NULL, NULL),
+(30, 'MAg - Master of Agriculture', NULL, NULL),
+(31, 'MBA - Master of Business Administration', NULL, NULL),
+(32, 'MCh - Master of Chemistry', NULL, NULL),
+(33, 'MEd- Master of Education', NULL, NULL),
+(34, 'MHA - Master of Hospital Administration', NULL, NULL),
+(35, 'MPH - Master of Public Health', NULL, NULL),
+(36, 'MPVM - Master of Preventive Veterinary Medicine', NULL, NULL),
+(37, 'MRCVS - Member of the Royal College of Veterinary Surgeons', NULL, NULL),
+(38, 'MS - Master of Science', NULL, NULL),
+(39, 'MsPH - Master of Science in Public Health', NULL, NULL),
+(40, 'MVD - Doctor of Veterinary Medicine', NULL, NULL),
+(41, 'MVSc - Master of Veterinary Science', NULL, NULL),
+(42, 'MVZ - Medico Veterinario Zootecnista', NULL, NULL),
+(43, 'PharmD - Doctor of Pharmacy', NULL, NULL),
+(44, 'PhD - Doctor of Philosophy', NULL, NULL),
+(45, 'ScD - Doctor of Science', NULL, NULL),
+(46, 'VMD - Doctor of Veterinary Medicine', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `education_school_names`
+--
+
+CREATE TABLE `education_school_names` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `school_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `education_school_names`
+--
+
+INSERT INTO `education_school_names` (`id`, `school_name`, `created_at`, `updated_at`) VALUES
+(1, 'Australia - Murdoch University, Division of Veterinary and Biomedical Sciences', NULL, NULL),
+(2, 'Australia - The University of Melbourne, Faculty of Veterinary Science', NULL, NULL),
+(3, 'Australia - The University of Sydney, Faculty of Veterinary Science', NULL, NULL),
+(4, 'Canada - Université de Montréal', NULL, NULL),
+(5, 'Canada - University of Calgary', NULL, NULL),
+(6, 'Canada - University of Guelph', NULL, NULL),
+(7, 'Canada - University of Prince Edward Island', NULL, NULL),
+(8, 'Canada - University of Saskatchewan', NULL, NULL),
+(9, 'England - University of London, The Royal Veterinary College', NULL, NULL),
+(10, 'Ireland - University College Dublin, School of Agriculture, Food Science &amp; Veterinary Medicine', NULL, NULL),
+(11, 'Mexico - Universidad Nacional Autonoma de México, Facultad de Medicina Veterinaria y Zootecnia', NULL, NULL),
+(12, 'New Zealand - Massey University College of Sciences, Institute of Veterinary, Animal, and Biomedical  Sciences', NULL, NULL),
+(13, 'Scotland - The University of Edinburgh, Royal (Dick) School of Veterinary Studies', NULL, NULL),
+(14, 'Scotland - University of Glasgow, Faculty of Veterinary Medicine', NULL, NULL),
+(15, 'The Netherlands - State University of Utrecht, Faculty of Veterinary Medicine', NULL, NULL),
+(16, 'USA - Auburn University', NULL, NULL),
+(17, 'USA - Colorado State University', NULL, NULL),
+(18, 'USA - Cornell University', NULL, NULL),
+(19, 'USA - Iowa State University', NULL, NULL),
+(20, 'USA - Kansas State University', NULL, NULL),
+(21, 'USA - Louisiana State University', NULL, NULL),
+(22, 'USA - Michigan State University', NULL, NULL),
+(23, 'USA - Mississippi State University', NULL, NULL),
+(24, 'USA - North Carolina State University', NULL, NULL),
+(25, 'USA - Ohio State University', NULL, NULL),
+(26, 'USA - Oklahoma State University', NULL, NULL),
+(27, 'USA - Oregon State University', NULL, NULL),
+(28, 'USA - Purdue University', NULL, NULL),
+(29, 'USA - Texas A &amp; M University', NULL, NULL),
+(30, 'USA - Tufts University', NULL, NULL),
+(31, 'USA - Tuskegee University', NULL, NULL),
+(32, 'USA - University of California, Davis', NULL, NULL),
+(33, 'USA - University of Florida', NULL, NULL),
+(34, 'USA - University of Georgia', NULL, NULL),
+(35, 'USA - University of Illinois at Urbana-Champaign', NULL, NULL),
+(36, 'USA - University of Minnesota', NULL, NULL),
+(37, 'USA - University of Missouri', NULL, NULL),
+(38, 'USA - University of Pennsylvania', NULL, NULL),
+(39, 'USA - University of Tennessee', NULL, NULL),
+(40, 'USA - University of Wisconsin-Madison', NULL, NULL),
+(41, 'USA - Virginia-Maryland Regional College of Veterinary Medicine', NULL, NULL),
+(42, 'USA - Washington State University', NULL, NULL),
+(43, 'USA - Western University of Health Sciences', NULL, NULL),
+(44, 'West Indies - Ross University School of Veterinary Medicine', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `events`
+--
+
+CREATE TABLE `events` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `event_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tags` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pdf_file` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `main_photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `event_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Vet_Pet_Prof_Fee` bigint(20) NOT NULL,
+  `Pet_Owner_Premium_Fee` bigint(20) NOT NULL,
+  `Pet_Owner_Fee` bigint(20) NOT NULL,
+  `Vet_Pet_Prof_Premium` bigint(20) NOT NULL,
+  `status` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1' COMMENT '0.disable,1.enable',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id`, `category_id`, `event_title`, `tags`, `pdf_file`, `main_photo`, `event_description`, `Vet_Pet_Prof_Fee`, `Pet_Owner_Premium_Fee`, `Pet_Owner_Fee`, `Vet_Pet_Prof_Premium`, `status`, `created_at`, `updated_at`) VALUES
+(2, 3, 'Ipsam blanditiis exp', 'Voluptatem occaecat', '1650034055.jpg', '1650034055.jpg', 'Quo duis quaerat sus', 50, 6, 59, 10, '1', '2022-04-15 19:47:35', '2022-04-15 19:47:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forums`
+--
+
+CREATE TABLE `forums` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `forum_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `forum_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `forums`
+--
+
+INSERT INTO `forums` (`id`, `category_id`, `forum_title`, `forum_description`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 'Case-Based Learning', 'Case-Based Learning', '2022-04-11 15:37:59', '2022-04-19 12:46:30', NULL),
+(2, 2, 'The Coaching Corner', 'The Coaching Corner', '2022-04-19 12:48:33', '2022-04-19 12:48:33', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forum_members`
+--
+
+CREATE TABLE `forum_members` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `forum_id` bigint(20) UNSIGNED NOT NULL,
+  `member_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `forum_members`
+--
+
+INSERT INTO `forum_members` (`id`, `forum_id`, `member_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '2022-04-11 15:37:59', '2022-04-11 15:37:59'),
+(2, 1, 2, '2022-04-11 15:37:59', '2022-04-11 15:37:59'),
+(3, 1, 3, '2022-04-11 15:37:59', '2022-04-11 15:37:59'),
+(4, 1, 4, '2022-04-11 15:37:59', '2022-04-11 15:37:59'),
+(5, 1, 5, '2022-04-11 15:37:59', '2022-04-11 15:37:59'),
+(6, 1, 6, '2022-04-11 15:37:59', '2022-04-11 15:37:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `forum_posts`
+--
+
+CREATE TABLE `forum_posts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `forum_id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `general_settings`
+--
+
+CREATE TABLE `general_settings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `twitter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `instagram` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `mission_statement` longtext COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `general_settings`
+--
+
+INSERT INTO `general_settings` (`id`, `facebook`, `twitter`, `instagram`, `youtube`, `logo`, `email`, `phone_no`, `mission_statement`, `created_at`, `updated_at`) VALUES
+(1, 'https://www.facebook.com', 'https://www.twitter.com', 'https://www.linkedin.com', 'https://www.youtube.com', '1650273355.png', 'vetvine@gmail.com', '(+1) 123-343-4355', 'Vetvine Mission Statement.', '2022-04-11 15:40:26', '2022-04-18 14:15:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `locales`
+--
+
+CREATE TABLE `locales` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `locale_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `locales`
+--
+
+INSERT INTO `locales` (`id`, `locale_name`, `created_at`, `updated_at`) VALUES
+(1, 'Afrikaans', NULL, NULL),
+(2, 'Albanian - shqip', NULL, NULL),
+(3, 'Amharic - አማርኛ', NULL, NULL),
+(4, 'Arabic - العربية', NULL, NULL),
+(5, 'Aragonese - aragonés', NULL, NULL),
+(6, 'Armenilocale_name - հայերեն', NULL, NULL),
+(7, 'Asturilocale_name - asturilocale_nameu', NULL, NULL),
+(8, 'Azerbaijlocale_namei - azərbaycan dili', NULL, NULL),
+(9, 'Basque - euskara', NULL, NULL),
+(10, 'Belarusian - беларуская', NULL, NULL),
+(11, 'Bengali - বাংলা', NULL, NULL),
+(12, 'Bosnian - bosanski', NULL, NULL),
+(13, 'Breton - brezhoneg', NULL, NULL),
+(14, 'Bulgarian - български', NULL, NULL),
+(15, 'Catalan - català', NULL, NULL),
+(16, 'Central Kurdish - کوردی (دەستنوسی عەرەبی)', NULL, NULL),
+(17, 'Chinese - 中文', NULL, NULL),
+(18, 'Chinese (Hong Kong) - 中文（香港）', NULL, NULL),
+(19, 'Chinese (Simplified) - 中文（简体）', NULL, NULL),
+(20, 'Chinese (Traditional) - 中文（繁體）', NULL, NULL),
+(21, 'Corsican', NULL, NULL),
+(22, 'Croatian - hrvatski', NULL, NULL),
+(23, 'Czech - čeština', NULL, NULL),
+(24, 'Danish - dansk', NULL, NULL),
+(25, 'Dutch - Nederlands', NULL, NULL),
+(26, 'English', NULL, NULL),
+(27, 'English (Australia)', NULL, NULL),
+(28, 'English (Canada)', NULL, NULL),
+(29, 'English (India)', NULL, NULL),
+(30, 'English (New Zealand)', NULL, NULL),
+(31, 'English (South Africa)', NULL, NULL),
+(32, 'English (United Kingdom)', NULL, NULL),
+(33, 'English (United States)', NULL, NULL),
+(34, 'Esperanto - esperanto', NULL, NULL),
+(35, 'Estonian - eesti', NULL, NULL),
+(36, 'Faroese - føroyskt', NULL, NULL),
+(37, 'Filipino', NULL, NULL),
+(38, 'Finnish - suomi', NULL, NULL),
+(39, 'French - français', NULL, NULL),
+(40, 'French (Canada) - français (Canada)', NULL, NULL),
+(41, 'French (France) - français (France)', NULL, NULL),
+(42, 'French (Switzerland) - français (Suisse)', NULL, NULL),
+(43, 'Galician - galego', NULL, NULL),
+(44, 'Georgian - ქართული', NULL, NULL),
+(45, 'German - Deutsch', NULL, NULL),
+(46, 'German (Austria) - Deutsch (Österreich)', NULL, NULL),
+(47, 'German (Germany) - Deutsch (Deutschland)', NULL, NULL),
+(48, 'German (Liechtenstein) - Deutsch (Liechtenstein)', NULL, NULL),
+(49, 'German (Switzerland) - Deutsch (Schweiz)', NULL, NULL),
+(50, 'Greek - Ελληνικά', NULL, NULL),
+(51, 'Guarani', NULL, NULL),
+(52, 'Gujarati - ગુજરાતી', NULL, NULL),
+(53, 'Hausa', NULL, NULL),
+(54, 'Hawaiian - ʻŌlelo Hawaiʻi', NULL, NULL),
+(55, 'Hebrew - עברית', NULL, NULL),
+(56, 'Hindi - हिन्दी', NULL, NULL),
+(57, 'Hungarian - magyar', NULL, NULL),
+(58, 'Icelandic - íslenska', NULL, NULL),
+(59, 'Indonesian - Indonesia', NULL, NULL),
+(60, 'Interlingua', NULL, NULL),
+(61, 'Irish - Gaeilge', NULL, NULL),
+(62, 'Italian - italiano', NULL, NULL),
+(63, 'Italian (Italy) - italiano (Italia)', NULL, NULL),
+(64, 'Italian (Switzerland) - italiano (Svizzera)', NULL, NULL),
+(65, 'Japanese - 日本語', NULL, NULL),
+(66, 'Kannada - ಕನ್ನಡ', NULL, NULL),
+(67, 'Kazakh - қазақ тілі', NULL, NULL),
+(68, 'Khmer - ខ្មែរ', NULL, NULL),
+(69, 'Korean - 한국어', NULL, NULL),
+(70, 'Kurdish - Kurdî', NULL, NULL),
+(71, 'Kyrgyz - кыргызча', NULL, NULL),
+(72, 'Lao - ລາວ', NULL, NULL),
+(73, 'Latin', NULL, NULL),
+(74, 'Latvian - latviešu', NULL, NULL),
+(75, 'Lingala - lingála', NULL, NULL),
+(76, 'Lithuanian - lietuvių', NULL, NULL),
+(77, 'Macedonian - македонски', NULL, NULL),
+(78, 'Malay - Bahasa Melayu', NULL, NULL),
+(79, 'Malayalam - മലയാളം', NULL, NULL),
+(80, 'Maltese - Malti', NULL, NULL),
+(81, 'Marathi - मराठी', NULL, NULL),
+(82, 'Mongolian - монгол', NULL, NULL),
+(83, 'Nepali - नेपाली', NULL, NULL),
+(84, 'Norwegian - norsk', NULL, NULL),
+(85, 'Norwegian Bokmål - norsk bokmål', NULL, NULL),
+(86, 'Norwegian Nynorsk - nynorsk', NULL, NULL),
+(87, 'Occitan', NULL, NULL),
+(88, 'Oriya - ଓଡ଼ିଆ', NULL, NULL),
+(89, 'Oromo - Oromoo', NULL, NULL),
+(90, 'Pashto - پښتو', NULL, NULL),
+(91, 'Persian - فارسی', NULL, NULL),
+(92, 'Polish - polski', NULL, NULL),
+(93, 'Portuguese - português', NULL, NULL),
+(94, 'Portuguese (Brazil) - português (Brasil)', NULL, NULL),
+(95, 'Portuguese (Portugal) - português (Portugal)', NULL, NULL),
+(96, 'Punjabi - ਪੰਜਾਬੀ', NULL, NULL),
+(97, 'Quechua', NULL, NULL),
+(98, 'Romanian - română', NULL, NULL),
+(99, 'Romanian (Moldova) - română (Moldova)', NULL, NULL),
+(100, 'Romansh - rumantsch', NULL, NULL),
+(101, 'Russian - русский', NULL, NULL),
+(102, 'Scottish Gaelic', NULL, NULL),
+(103, 'Serbian - српски', NULL, NULL),
+(104, 'Serbo-Croatian - Srpskohrvatski', NULL, NULL),
+(105, 'Shona - chiShona', NULL, NULL),
+(106, 'Sindhi', NULL, NULL),
+(107, 'Sinhala - සිංහල', NULL, NULL),
+(108, 'Slovak - slovenčina', NULL, NULL),
+(109, 'Slovenian - slovenščina', NULL, NULL),
+(110, 'Somali - Soomaali', NULL, NULL),
+(111, 'Southern Sotho', NULL, NULL),
+(112, 'Spanish - español', NULL, NULL),
+(113, 'Spanish (Argentina) - español (Argentina)', NULL, NULL),
+(114, 'Spanish (Latin America) - español (Latinoamérica)', NULL, NULL),
+(115, 'Spanish (Mexico) - español (México)', NULL, NULL),
+(116, 'Spanish (Spain) - español (España)', NULL, NULL),
+(117, 'Spanish (United States) - español (Estados Unidos)', NULL, NULL),
+(118, 'Sundanese', NULL, NULL),
+(119, 'Swahili - Kiswahili', NULL, NULL),
+(120, 'Swedish - svenska', NULL, NULL),
+(121, 'Tajik - тоҷикӣ', NULL, NULL),
+(122, 'Tamil - தமிழ்', NULL, NULL),
+(123, 'Tatar', NULL, NULL),
+(124, 'Telugu - తెలుగు', NULL, NULL),
+(125, 'Thai - ไทย', NULL, NULL),
+(126, 'Tigrinya - ትግርኛ', NULL, NULL),
+(127, 'Tongan - lea fakatonga', NULL, NULL),
+(128, 'Turkish - Türkçe', NULL, NULL),
+(129, 'Turkmen', NULL, NULL),
+(130, 'Twi', NULL, NULL),
+(131, 'Ukrainian - українська', NULL, NULL),
+(132, 'Urdu - اردو', NULL, NULL),
+(133, 'Uyghur', NULL, NULL),
+(134, 'Uzbek - o‘zbek', NULL, NULL),
+(135, 'Vietnamese - Tiếng Việt', NULL, NULL),
+(136, 'Walloon - wa', NULL, NULL),
+(137, 'Welsh - Cymraeg', NULL, NULL),
+(138, 'Western Frisian', NULL, NULL),
+(139, 'Xhosa', NULL, NULL),
+(140, 'Yiddish', NULL, NULL),
+(141, 'Yoruba - Èdè Yorùbá', NULL, NULL),
+(142, 'Zulu - isiZulu', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `members`
+--
+
+CREATE TABLE `members` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `member_id` int(11) NOT NULL,
+  `memberable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `memberable_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `members`
+--
+
+INSERT INTO `members` (`id`, `member_id`, `memberable_type`, `memberable_id`, `created_at`, `updated_at`) VALUES
+(1, 2, 'App\\Models\\Admins\\Forum\\Forum', 2, '2022-04-19 12:48:33', '2022-04-19 12:48:33'),
+(2, 3, 'App\\Models\\Admins\\Forum\\Forum', 2, '2022-04-19 12:48:33', '2022-04-19 12:48:33'),
+(3, 5, 'App\\Models\\Admins\\Forum\\Forum', 2, '2022-04-19 12:48:33', '2022-04-19 12:48:33'),
+(11, 4, 'App\\Models\\Admins\\Announcement\\Announcement', 1, '2022-04-19 13:47:52', '2022-04-19 13:47:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `member_ship_plans`
+--
+
+CREATE TABLE `member_ship_plans` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `plan_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `plan_description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `plan_features` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `plan_price` double(8,2) NOT NULL,
+  `expiry_date` date NOT NULL,
+  `network_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `member_ship_plan_categories_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `member_ship_plans`
+--
+
+INSERT INTO `member_ship_plans` (`id`, `plan_name`, `plan_description`, `plan_features`, `plan_price`, `expiry_date`, `network_id`, `member_ship_plan_categories_id`, `created_at`, `updated_at`) VALUES
+(1, 'Premium', 'jsakdashd', '[\"Cum ipsum magnam in\",\"Incididunt dolore ve\",\"Ipsam itaque cillum\",\"Ut Nam qui est aliqu\",\"Dolor sint maxime qu\"]', 839.00, '2022-04-28', NULL, 1, '2022-04-11 17:47:06', '2022-04-11 17:47:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `member_ship_plan_categories`
+--
+
+CREATE TABLE `member_ship_plan_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 for  active, 0 for inactive',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `member_ship_plan_categories`
+--
+
+INSERT INTO `member_ship_plan_categories` (`id`, `category_name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Diamond', 1, '2022-04-11 17:46:00', '2022-04-11 17:46:00'),
+(2, 'Gold', 1, '2022-04-11 17:46:09', '2022-04-11 17:46:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_03_29_093632_create_locales_table', 1),
+(2, '2014_10_11_114347_create_time_zones_table', 1),
+(3, '2014_10_12_000000_create_user_member_and_network_levels_table', 1),
+(4, '2014_10_12_000000_create_users_table', 1),
+(5, '2014_10_12_100000_create_password_resets_table', 1),
+(6, '2014_10_12_200000_add_two_factor_columns_to_users_table', 1),
+(7, '2019_08_19_000000_create_failed_jobs_table', 1),
+(8, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(9, '2022_01_13_081520_create_sessions_table', 1),
+(10, '2022_01_13_101707_create_contactuses_table', 1),
+(13, '2022_03_25_114125_create_skill_and_expertises_table', 1),
+(14, '2022_03_25_150025_create_user_skills_and_expertises_table', 1),
+(15, '2022_03_28_093405_create_education_table', 1),
+(16, '2022_03_28_095945_create_education_school_names_table', 1),
+(17, '2022_03_28_110339_create_general_settings_table', 1),
+(18, '2022_03_28_111135_create_user_education_table', 1),
+(19, '2022_03_30_061004_create_member_ship_plan_categories_table', 1),
+(20, '2022_03_30_084322_create_countries_table', 1),
+(21, '2022_03_30_094049_create_user_employment_infos_table', 1),
+(22, '2022_03_31_155424_create_member_ship_plans_table', 1),
+(23, '2022_04_01_102643_create_posts_table', 1),
+(24, '2022_04_05_070325_create_networks_table', 1),
+(25, '2022_04_05_101218_create_category_forums_table', 1),
+(26, '2022_04_05_113228_create_forums_table', 1),
+(27, '2022_04_06_071639_create_forum_members_table', 1),
+(28, '2022_04_07_095947_create_forum_posts_table', 1),
+(29, '2022_04_11_101733_create_buy_member_ship_plans_table', 2),
+(30, '2022_04_14_103312_create_announcements_table', 3),
+(31, '2022_04_15_061624_create_members_table', 3),
+(32, '2022_04_14_104309_create_category_events_table', 4),
+(33, '2022_04_15_065625_create_events_table', 4),
+(34, '2022_04_19_073903_add_morph_to_posts', 5),
+(35, '2022_04_20_072447_create_news_table', 6),
+(36, '2022_01_13_115324_create_ad_campaigns_table', 7),
+(37, '2022_01_13_120810_create_ads_table', 7),
+(38, '2022_04_28_081334_add_forumid_to_posts', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `networks`
+--
+
+CREATE TABLE `networks` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `body` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `networkable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `networkable_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `news_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `news_link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `news_description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id`, `news_title`, `news_link`, `news_description`, `created_at`, `updated_at`) VALUES
+(1, 'Put Your Paws Up For National Dog Day!', 'https://www.globalanimal.org/2021/08/26/international-dog-day-is-here/', '(PETS/DOGS) Attention dog lovers! It’s time to celebrate the dog days of August, and share your appreciation for your canine buddies.', '2022-04-22 11:57:15', '2022-04-22 11:57:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('mianwarissb@gmail.com', '$2y$10$dhYbTLrMW146rNXUGhwmWu6uycscjMXIO2me3MNgIlu3oVeiYP5sa', '2022-04-29 16:01:09'),
+('omarbhatti999@gmail.com', '$2y$10$.FyM7xZVYEBlZ4Kfm5cl5uvQIs09jcwdWexJX4Qut9oDh6P6PpVU6', '2022-04-29 17:44:57'),
+('mailsicoding@gmail.com', '$2y$10$cqV7/RfuBsPX1DI./7mm4OsE.alC7ZJP3WLQdlbgjGABGbABEcfPS', '2022-04-29 20:38:05'),
+('raoawais888@gmail.com', '$2y$10$2rw7v5hoHk5tSM7iH2UP3OHGnhMcHa8SpTvRk4pMdIVP.wY0h1dlq', '2022-05-09 21:51:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `posts`
+--
+
+CREATE TABLE `posts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `forum_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `post_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `post_photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `post_description` text COLLATE utf8mb4_unicode_ci,
+  `post_link` text COLLATE utf8mb4_unicode_ci,
+  `post_add_ytlink` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `post_add_vimeolink` text COLLATE utf8mb4_unicode_ci,
+  `post_add_video` text COLLATE utf8mb4_unicode_ci,
+  `status` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1' COMMENT '0.disable,1.enable',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('0tg7YQodfjro5PLOYl8JiPA1PKvRCh5FKxZ3tEQd', NULL, '52.114.32.28', 'Mozilla/5.0 (Windows NT 6.1; WOW64) SkypeUriPreview Preview/0.5 skype-url-preview@microsoft.com', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQnlrYm9IU2s1RlpTdmJjdTBLYUJRZDB1R0hPV2dtcUptWm5IQlV6MiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzL2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652115293),
+('6KTX7q8vLZcD75O9V5vDa1mOq9X1tTG7c0vRIBTy', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUG5XTjFoUzdOazZyQUpuM0R6NTZHaFRHOWwwWEpSRGR0ZVNSZFlmRSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652178683),
+('6vrYhHDntPOi4TMH3t0U8tOYdpe8zgRuCj4NKue1', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQzRQdWxQUU5ab0xwQ1FjNGRNdFREVGt0Q3d6MDN4SEpRTG1hbmtwYyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652157126),
+('6yCEuBLBfOGdVEJ0UzwwREh6MhAmjDb35bkqmUcV', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZmk4R0tKNEtlMWNHOWFQNUYzZWNUY0lTUVNzN2ZCcXBqMDVsQzFuZSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652140970),
+('8h9z4DuAS2Z0Jr4RbJXqmKh8JIU9uTeYkUKdoJUV', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoieEt1MW4wdlNhWEhWaGhXRlo5Q2NpYUpWOGxTU2pUTVhnSjlrOE9uSSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652185883),
+('aQICZZGo99LydF0XPotEpD08rdeTWGo7fr9qjfBd', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiS0hOc2VRTTJicHZ0c3ZLOGlWcVhGekNrTkEzWVJyVUtWSXJFWEpNUyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652128360),
+('bEOPLYWMryRVa5oarAyq6teoosbVEqj2QkJBYMzP', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibTV6RTBIeUZIb0NQQ0Z3M21BcEdXUXlsQUVESThMQVJyQUwzenljZSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652160754),
+('bSbxIq5vJds0lDdIVzgU3zAoXMY9UE1MtFTOxuMM', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQzJVUHFOTElGVlQyVEdjTzdBa0pIYWpWVmtWTDk1S1hyZUcxZmhweiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652149961),
+('byFxq8zHyUzcGzpwfpuDZC7z5JIfcWnzFFAtRRtV', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVHU3SDJFNnhpaUZUdkxSMTFVdDVIaGRsVko2aTl2NHBLYUQ2dnlqNiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652139166),
+('cDHsqbQMKmmxkyKyUXWeBC5EMxFCn8xGnhbNkYOC', NULL, '101.53.242.27', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoic1JuN1hrV3loeW5ZT1kwcVd1RzNCeUZoRm91cmk3THphZTJPWXZwSiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652176800),
+('CRDD1E1KlkymcRc943zZMDnfTxEGy4gnGUfaEqFl', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNVBWR1FiNDZWUkpTeFIxQUgxWXV1RjZvUFI0eVliT0xXRzNDNXZNSCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652169725),
+('digsRKqnTvBf2LGRF0SNo2En9Ox1HEXzpKiCCBIB', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicVZQcGlvNlpFakswZGg5cjdPeXY4Y0tZNGNlQkYyb3kwSDhuQzI0YiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652119379),
+('ewAYxKtDtvImh7VU6pjdwWBsTUvo4EiiOqGoDjVi', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiN0VtT3dkbGl5dnA0Q3JGVXdLRmpKeGk4SlYxV1ZYNGJGUHVyWjZmNSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652168281),
+('gKxZPQpLkQE7zHymkSuGmZsvxiwP2rJRwW2Q0fmV', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiakNrZXJ2YUl1ZmcxcWJ1S2JmU3ViT014Z1VwRzVNbjVvY3pDcUY1TSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652133701),
+('GLBrjY8uTdwLpHHSewFz9cQtKTqNziGvhgePBQ3k', NULL, '101.53.242.27', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWVBlcWl5SHY3OEtWUWVFMXVsT0tHYXZBQnk4Wmk4UVAwbVRpaGJDTyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTE6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzL2Zyb250ZW5kLWZvcnVtcyI7fX0=', 1652176264),
+('gvXBU8zz64rtbDqWJy19WO1ylT3rlkD3BNgZLjxw', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSlJocFJNTldQd0IyMDlGOHZGSUFTcFJ4QW1oS3MyaGpIWEVKdkFNeSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652184073),
+('GXCL8v7paQRgFwJqhBEkSpmzkzrkORBXiumjd9dC', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoia3N3dzMzeklLb1ZTVU9oVXdORER5V09uTGR6eWdSOHViSEszTkJndyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652142743),
+('HC4SMS6rJbmpSQWXYq8Jz6ihhXgsJDthCy8l4kn8', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMFBadXlick55bDZBUFFYZFNJNnpHdWw1YlNXUWdIaFlvWHNZTEI5QSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652168281),
+('iCJikYAyDtkzhvwPBo2M5AoMyyOzkweTK9s6LnAH', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTVUwZXpTN2E2alN3ZFo3dGpqMWFBajA0RzluZWNjWnNJZ0RVRERaeiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652148156),
+('iEqOPx10JdrXRIL2mSjrxh1rVscvcivd8OrCh3LP', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicjRSMmlXNWpzTUp3NWh0b21uUnlTdWxSc2xqN2VDR281TkxJRm1hTCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652153568),
+('IWW4w4i31kaP31EhmpXAe5ONnK90QsTJAOkVWw68', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRW5nbHVYVUNOc0FpaU9IbjhTRk1jSzk0YVd6RWlYODlXVTBLQ1UzQyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652166154),
+('KrnCZCzce9cQi1BsC6m1iHHoCewiamjGiewBTAfh', NULL, '101.53.242.27', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiODBaQ3ZPUFBxMFFUS2RjUTREakpaWmZwSFRNWGdGeEVDRUdxdVlTOSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTE6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzL2ZvcnVtcG9zdGxpc3QvMSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1652179626),
+('kx4oJDMMnAxkEBSXfhce8RTZslWnfprW15Do8Yvc', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoic0h6TWdabWhvU2ZjZ3VkMEplNnFWRzhhak9DWnJxSndkWGRzSlpWUCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652162545),
+('lE7omNMKYiXyR9N4IW8ToZ9SV0XdlqQzQrTxl5eD', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoianZ6Z0JGaGhObzRvU0dlYnNpWGVqZlJwTzI1M3BNMDBrUG5EMlpFcCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652137360),
+('LzAb7ZS3G0HLt8L2We3OX7qRmKCrW1wWZW02jcri', NULL, '101.53.242.27', 'Mozilla/5.0 (Linux; Android 6.0; HUAWEI VNS-L31) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.73 Mobile Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVm9NY0tXOUxjcUEzUm1RcFN1V0tNOEZMc3YwTUM5QmpCaU4xMGc5NCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652115655),
+('MZeVlZI30TbjcrVxNv6l3leRkW5rX8lTJvNIlVx9', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoib2lSTmxHZlAzOEk2cWJXQ1AzOFNSQ2ZGN0p5aFRjYzNsNkZwOXE3NiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652144541),
+('Nq6CEHipYpFpzytlo61XNhjqBrWmyJM8Oux6iby1', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicHdIeFVadEpYb05DaUF6enU0RGRnd3ptdzBQQXEwS2hKUmNBQ2lleiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652175079),
+('oB1elVRt7ZJwLB26xFvKbnKZJV4Gbz6z3jwpKrsE', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibHF4RTRpZkltbUtPTEhKNFd1VjRiWklyUXlqbkZLdXhOWjNGd000SyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652117538),
+('oHrEhpSsFz3zWtQCuw3gFu1YbwDI1eeJCvPp9FfD', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiU0NQMGtsMlZmT1BKUGwzVU8wdUxoeGhOYTAzV1hmQ2d0anJBeXd2eSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652173373),
+('OIPOorcZSL1D3BEOi1TMhcqckR2pAtIH0szpnBmH', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiY0xuM29YcHdQT1FnbUIxR3FFaGlUZllPZjRGRUZvRHN3QVhpYUFjZCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652135544),
+('oppFUYa48PtFKu2mPhV0b6PDCDg3UzsTBnl725jx', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiS1hXYlJuYzY3SVRLaWdjRGd2UVpKMHl6TldIMzVXd3o4MUZSUmxtQiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652115686),
+('owQ2Nsb2bJPtGIjIukudLC0niruH6YPMMKQEC5rH', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWlh5RlZLckllOXJRT3h4Y0RBWW1NOUhUUVdxMTVHSjNJZlhYYUkzVSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652146336),
+('P1NvgQTUIZCrwlpPTydcN5Q1N9UucwBxZ1ZQdBAr', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicTJSdUpES1A1M3dtR25iZWswb2hSQW1wUHhRYkw3SjREeTJYY1ExYSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652122949),
+('QA3yqW8v6QrXmZHh74DhfZ98yhmWbP0zOYB6qZCH', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicUxlbVB6ekdzWHU0OUFTUlJVMDQyMEdZYUZ1bTB5UmxpRVNZbk5kNiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652130172),
+('qodBsLt1JpLWW3CY4o3IxhDFXBqttjohS1pT4Lub', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQ09sVXFWTUdOZlR1TUc5a1RtdnFQN3ZNN29tNnhGYjVocFdRaGFGWiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652182271),
+('rHunyZ7UifxrhUqn32cwkD9hoZ42VY80CIvWiwDg', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiOW5rdWlQdnlzT1psQkZZRjdVZUcyS0hQZGdvN3FuaVU1WXJLY3RCSSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652158940),
+('RLBa8WJyc0rCjEbC2k3I8dlLG8qQygA0Y6T7LCWh', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiU3dDUGNkN1VnRHg4emZ1QlRtcTR4a2h0VTBLNmg4V0cyeHJES21jbSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652151754),
+('rQ3pJTVhfVnF4pl3ayB1tfmoHoXKTpwHX9XWgSzL', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibzhTYU1aSTFHcTBObzNQQkxXbzZVcEdkS2pWWnJ3eG84RDVOZUNubiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652131948),
+('rtPppBJEkE9v6yeaNFL8JiWJY02nTQ0Pxq3JNg1K', NULL, '39.59.87.36', 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Mobile Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidWlNUzAwcDVMS01jUHpVRlR4OUZSOG5sMmRqaXQ5aFN1b1d4ckc5VyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzL2dyb3ciO319', 1652115651),
+('SkPHrF9M9sqiYP8uMxoGaMiTpMXGuEBYi3uvRpmL', NULL, '77.111.246.40', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.84 Safari/537.36 OPR/85.0.4341.75', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMzNxcXBoVXVQTnJYWnZaQWNoMWJvdmVkTFZDUTNHa2RDMVVXMnZvZyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHBzOi8vdmV0dmluZS5sZWFkY29uY2VwdC5idXNpbmVzcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1652171444),
+('SvfHWs3FpEXNv1dnzE5BJs6R7tSeaqWa5jXrTmEI', NULL, '39.59.87.36', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicUp3R3BzOGJ4TWxsRVlKZGpKOWdLRzIxa3VWZmxvRHc1c2w1QUtrdCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHBzOi8vdmV0dmluZS5sZWFkY29uY2VwdC5idXNpbmVzcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1652173831),
+('SyEDGeVf4c0gylK3Y5LC1kgjXpZO66PrWDLkTSXz', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVlFBbm9IZ1VYekFOeE4xSTR1SXM2SmlWTTl0VDAzbVJCU0loN2Y5VCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652124724),
+('syiBaCB2h1sRnaraf9Qou8Lw5RzK6Mj70ACVMG7E', NULL, '101.53.242.27', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiakxFSW5FUkIzSDh2WjFNb25xUFI4MHhyajc5eFlFc0JEMDFpMHg1TCI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czo0ODoiaHR0cDovL3ZldHZpbmUubGVhZGNvbmNlcHQuYnVzaW5lc3MvZW1haWwvdmVyaWZ5Ijt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzL2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652170745),
+('TKelDrfr1tK3cpCpspKjVF8oHiDQqnez1FPR4pHO', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiS1dwMGJ2ZDlocDJaYXBKUlRLeE1wQVY2VUxUOUhyaUpYNnhlNnYwaCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652164350),
+('TTSN8JX6AIMqU9PVmSrX1Tk6hNLy5jKy4wOGYKKT', NULL, '52.114.32.28', 'Mozilla/5.0 (Windows NT 6.1; WOW64) SkypeUriPreview Preview/0.5 skype-url-preview@microsoft.com', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiazRsZ2dhbUk0OUJYM3pXUWVIMjJUNDJ1UVZwN2g0Z1h0TDhiR1IyYyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czo0ODoiaHR0cDovL3ZldHZpbmUubGVhZGNvbmNlcHQuYnVzaW5lc3MvZW1haWwvdmVyaWZ5Ijt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDg6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzL2VtYWlsL3ZlcmlmeSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1652115293),
+('UAGDJveiGzO1BY2N4OT3FrNX3RgDS4dfbky3YIH2', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNmhWSzAxS3BUdHo3dkl2aTJReFM5bHJHUmZjZGhuUEx3MzNuWU1kTiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652180466),
+('Uj51QtAy5I0R5wHEUjxOfMJxNHSkjjVdq25pvRhI', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibG9HcEZLcHVENzB4TzMzUDZ0TlpjUGVPcnFROEk4YjdKakJiaXNqbCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652171486),
+('uN1zIO6BDPiFBw9m89mWjSqP0uwRrJGFawkdXQqi', NULL, '110.93.194.6', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoicElPNEJLZ3ZuR0pRS24xMWFsek1hYTdNeGhkRVhMdEt3N3Y1M2lWbyI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czo3MzoiaHR0cDovL3ZldHZpbmUubGVhZGNvbmNlcHQuYnVzaW5lc3MvdmV0dmluZS1tZW1iZXIvc2tpbGxzZXhwZXJ0aXNlL2NyZWF0ZSI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjczOiJodHRwOi8vdmV0dmluZS5sZWFkY29uY2VwdC5idXNpbmVzcy92ZXR2aW5lLW1lbWJlci9za2lsbHNleHBlcnRpc2UvY3JlYXRlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652114772),
+('W7Ztlz9rIa46xaGVfpj5yQ03X8SCFRl90xw7iVLc', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoicktqRFNYd0NOTDdGRDUzNW5NZ3FuSEp3OVpwTHhteHRLdmVLRDBheiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652126521),
+('XcnVVW08j04c7Z1KNF1UYT2JEeghwYL020WQ2OwJ', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiSUpiczRWSk13clZrT0M3N3hRbjRtS0lKZFpkY2Jya2VnOU9aUE15RSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652176902),
+('xexCBdMzVs091YS4dEm9xCfWyumsAWte2I7c2Oo2', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZHB2b1h2bFc2Q1FNZ25oTHp4Tm5wSjY5SjdGaE10WWZ0WVhGNG13SyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652121146),
+('Y21hCZ5gGekxbzKA19xeAgGSmBWQwCUKI6n62KCs', NULL, '39.59.87.36', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiY3BtcGs3REYzOTJ5NGx2eWZnQ1h0czVkZExNYWIzVTZzWGxqdUFlVyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHBzOi8vdmV0dmluZS5sZWFkY29uY2VwdC5idXNpbmVzcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1652181387),
+('y5uDbyVMCpPu6KWeN40OTkBU4iR1QUWZaP6B0oKK', NULL, '119.160.114.229', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZXdzR1drTnBidHUyMVZuNUdEcWRtNkdqdEt4aER5R21TT0g4ZjVjdSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTQ1OiJodHRwOi8vdmV0dmluZS5sZWFkY29uY2VwdC5idXNpbmVzcy9yZXNldC1wYXNzd29yZC9lZDg5NWI1ZjIwNGRlMzg4NGRiYjQxMjY2OGU2YTc1MDAwYmNhOGM4ZmVkOTA2OWExMTk3YjZlMGJkYjRlY2YyP2VtYWlsPXJhb2F3YWlzODg4JTQwZ21haWwuY29tIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652115443),
+('Z4DFcByy1gKdFM6YqMHdOen6ilZeYNHEpUPUvEN4', NULL, '192.187.101.106', 'Go-http-client/1.1', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiNE1vU1k1REYzT3prWmw5bko2S3d5UFpYc3pZbFdFVENGN3JaeWFjVyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly92ZXR2aW5lLmxlYWRjb25jZXB0LmJ1c2luZXNzIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1652155350);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `skill_and_expertises`
+--
+
+CREATE TABLE `skill_and_expertises` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `skill_and_expertises`
+--
+
+INSERT INTO `skill_and_expertises` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Aquatic', NULL, NULL),
+(2, 'Avian', NULL, NULL),
+(3, 'Bovine (Beef predominant)', NULL, NULL),
+(4, 'Bovine (Dairy predominant)', NULL, NULL),
+(5, 'Canine', NULL, NULL),
+(6, 'Caprine', NULL, NULL),
+(7, 'Equine (exclusive)', NULL, NULL),
+(8, 'Equine (predominant)', NULL, NULL),
+(9, 'Exotics', NULL, NULL),
+(10, 'Feline', NULL, NULL),
+(11, 'Laboratory Animal', NULL, NULL),
+(12, 'Ovine / Caprine', NULL, NULL),
+(13, 'Porcine', NULL, NULL),
+(14, 'Poultry', NULL, NULL),
+(15, 'Rabbits', NULL, NULL),
+(16, 'Reptiles', NULL, NULL),
+(17, 'Small mammals', NULL, NULL),
+(18, 'Wildlife', NULL, NULL),
+(19, 'Zoo animals', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `time_zones`
+--
+
+CREATE TABLE `time_zones` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `offset` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `diff_from_gtm` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `time_zones`
+--
+
+INSERT INTO `time_zones` (`id`, `name`, `offset`, `diff_from_gtm`, `created_at`, `updated_at`) VALUES
+(1, 'Africa/Abidjan', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:21', '2022-04-11 02:23:21'),
+(2, 'Africa/Accra', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:21', '2022-04-11 02:23:21'),
+(3, 'Africa/Addis_Ababa', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:21', '2022-04-11 05:23:21'),
+(4, 'Africa/Algiers', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:21', '2022-04-11 03:23:21'),
+(5, 'Africa/Asmara', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:21', '2022-04-11 05:23:21'),
+(6, 'Africa/Bamako', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:21', '2022-04-11 02:23:21'),
+(7, 'Africa/Bangui', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:21', '2022-04-11 03:23:21'),
+(8, 'Africa/Banjul', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:21', '2022-04-11 02:23:21'),
+(9, 'Africa/Bissau', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:22', '2022-04-11 02:23:22'),
+(10, 'Africa/Blantyre', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(11, 'Africa/Brazzaville', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:22', '2022-04-11 03:23:22'),
+(12, 'Africa/Bujumbura', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(13, 'Africa/Cairo', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(14, 'Africa/Casablanca', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:22', '2022-04-11 02:23:22'),
+(15, 'Africa/Ceuta', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(16, 'Africa/Conakry', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:22', '2022-04-11 02:23:22'),
+(17, 'Africa/Dakar', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:22', '2022-04-11 02:23:22'),
+(18, 'Africa/Dar_es_Salaam', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(19, 'Africa/Djibouti', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(20, 'Africa/Douala', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:22', '2022-04-11 03:23:22'),
+(21, 'Africa/El_Aaiun', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:22', '2022-04-11 02:23:22'),
+(22, 'Africa/Freetown', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:22', '2022-04-11 02:23:22'),
+(23, 'Africa/Gaborone', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(24, 'Africa/Harare', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(25, 'Africa/Johannesburg', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(26, 'Africa/Juba', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(27, 'Africa/Kampala', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(28, 'Africa/Khartoum', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(29, 'Africa/Kigali', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(30, 'Africa/Kinshasa', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:22', '2022-04-11 03:23:22'),
+(31, 'Africa/Lagos', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:22', '2022-04-11 03:23:22'),
+(32, 'Africa/Libreville', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:22', '2022-04-11 03:23:22'),
+(33, 'Africa/Lome', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:22', '2022-04-11 02:23:22'),
+(34, 'Africa/Luanda', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:22', '2022-04-11 03:23:22'),
+(35, 'Africa/Lubumbashi', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(36, 'Africa/Lusaka', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(37, 'Africa/Malabo', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:22', '2022-04-11 03:23:22'),
+(38, 'Africa/Maputo', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(39, 'Africa/Maseru', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(40, 'Africa/Mbabane', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(41, 'Africa/Mogadishu', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(42, 'Africa/Monrovia', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:22', '2022-04-11 02:23:22'),
+(43, 'Africa/Nairobi', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(44, 'Africa/Ndjamena', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:22', '2022-04-11 03:23:22'),
+(45, 'Africa/Niamey', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:22', '2022-04-11 03:23:22'),
+(46, 'Africa/Nouakchott', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:22', '2022-04-11 02:23:22'),
+(47, 'Africa/Ouagadougou', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:22', '2022-04-11 02:23:22'),
+(48, 'Africa/Porto-Novo', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:22', '2022-04-11 03:23:22'),
+(49, 'Africa/Sao_Tome', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:22', '2022-04-11 02:23:22'),
+(50, 'Africa/Tripoli', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(51, 'Africa/Tunis', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:22', '2022-04-11 03:23:22'),
+(52, 'Africa/Windhoek', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(53, 'America/Adak', '-09:00', 'UTC/GMT -09:00', '2022-04-10 17:23:22', '2022-04-10 17:23:22'),
+(54, 'America/Anchorage', '-08:00', 'UTC/GMT -08:00', '2022-04-10 18:23:22', '2022-04-10 18:23:22'),
+(55, 'America/Anguilla', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(56, 'America/Antigua', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(57, 'America/Araguaina', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(58, 'America/Argentina/Buenos_Aires', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(59, 'America/Argentina/Catamarca', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(60, 'America/Argentina/Cordoba', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(61, 'America/Argentina/Jujuy', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(62, 'America/Argentina/La_Rioja', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(63, 'America/Argentina/Mendoza', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(64, 'America/Argentina/Rio_Gallegos', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(65, 'America/Argentina/Salta', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(66, 'America/Argentina/San_Juan', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(67, 'America/Argentina/San_Luis', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(68, 'America/Argentina/Tucuman', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(69, 'America/Argentina/Ushuaia', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(70, 'America/Aruba', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(71, 'America/Asuncion', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(72, 'America/Atikokan', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(73, 'America/Bahia', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(74, 'America/Bahia_Banderas', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(75, 'America/Barbados', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(76, 'America/Belem', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(77, 'America/Belize', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(78, 'America/Blanc-Sablon', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(79, 'America/Boa_Vista', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(80, 'America/Bogota', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(81, 'America/Boise', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(82, 'America/Cambridge_Bay', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(83, 'America/Campo_Grande', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(84, 'America/Cancun', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(85, 'America/Caracas', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(86, 'America/Cayenne', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(87, 'America/Cayman', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(88, 'America/Chicago', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(89, 'America/Chihuahua', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(90, 'America/Costa_Rica', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(91, 'America/Creston', '-07:00', 'UTC/GMT -07:00', '2022-04-10 19:23:22', '2022-04-10 19:23:22'),
+(92, 'America/Cuiaba', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(93, 'America/Curacao', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(94, 'America/Danmarkshavn', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:22', '2022-04-11 02:23:22'),
+(95, 'America/Dawson', '-07:00', 'UTC/GMT -07:00', '2022-04-10 19:23:22', '2022-04-10 19:23:22'),
+(96, 'America/Dawson_Creek', '-07:00', 'UTC/GMT -07:00', '2022-04-10 19:23:22', '2022-04-10 19:23:22'),
+(97, 'America/Denver', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(98, 'America/Detroit', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(99, 'America/Dominica', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(100, 'America/Edmonton', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(101, 'America/Eirunepe', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(102, 'America/El_Salvador', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(103, 'America/Fort_Nelson', '-07:00', 'UTC/GMT -07:00', '2022-04-10 19:23:22', '2022-04-10 19:23:22'),
+(104, 'America/Fortaleza', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(105, 'America/Glace_Bay', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(106, 'America/Goose_Bay', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(107, 'America/Grand_Turk', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(108, 'America/Grenada', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(109, 'America/Guadeloupe', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(110, 'America/Guatemala', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(111, 'America/Guayaquil', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(112, 'America/Guyana', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(113, 'America/Halifax', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(114, 'America/Havana', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(115, 'America/Hermosillo', '-07:00', 'UTC/GMT -07:00', '2022-04-10 19:23:22', '2022-04-10 19:23:22'),
+(116, 'America/Indiana/Indianapolis', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(117, 'America/Indiana/Knox', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(118, 'America/Indiana/Marengo', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(119, 'America/Indiana/Petersburg', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(120, 'America/Indiana/Tell_City', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(121, 'America/Indiana/Vevay', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(122, 'America/Indiana/Vincennes', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(123, 'America/Indiana/Winamac', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(124, 'America/Inuvik', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(125, 'America/Iqaluit', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(126, 'America/Jamaica', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(127, 'America/Juneau', '-08:00', 'UTC/GMT -08:00', '2022-04-10 18:23:22', '2022-04-10 18:23:22'),
+(128, 'America/Kentucky/Louisville', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(129, 'America/Kentucky/Monticello', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(130, 'America/Kralendijk', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(131, 'America/La_Paz', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(132, 'America/Lima', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(133, 'America/Los_Angeles', '-07:00', 'UTC/GMT -07:00', '2022-04-10 19:23:22', '2022-04-10 19:23:22'),
+(134, 'America/Lower_Princes', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(135, 'America/Maceio', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(136, 'America/Managua', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(137, 'America/Manaus', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(138, 'America/Marigot', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(139, 'America/Martinique', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(140, 'America/Matamoros', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(141, 'America/Mazatlan', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(142, 'America/Menominee', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(143, 'America/Merida', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(144, 'America/Metlakatla', '-08:00', 'UTC/GMT -08:00', '2022-04-10 18:23:22', '2022-04-10 18:23:22'),
+(145, 'America/Mexico_City', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(146, 'America/Miquelon', '-02:00', 'UTC/GMT -02:00', '2022-04-11 00:23:22', '2022-04-11 00:23:22'),
+(147, 'America/Moncton', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(148, 'America/Monterrey', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(149, 'America/Montevideo', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(150, 'America/Montserrat', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(151, 'America/Nassau', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(152, 'America/New_York', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(153, 'America/Nipigon', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(154, 'America/Nome', '-08:00', 'UTC/GMT -08:00', '2022-04-10 18:23:22', '2022-04-10 18:23:22'),
+(155, 'America/Noronha', '-02:00', 'UTC/GMT -02:00', '2022-04-11 00:23:22', '2022-04-11 00:23:22'),
+(156, 'America/North_Dakota/Beulah', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(157, 'America/North_Dakota/Center', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(158, 'America/North_Dakota/New_Salem', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(159, 'America/Nuuk', '-02:00', 'UTC/GMT -02:00', '2022-04-11 00:23:22', '2022-04-11 00:23:22'),
+(160, 'America/Ojinaga', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(161, 'America/Panama', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(162, 'America/Pangnirtung', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(163, 'America/Paramaribo', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(164, 'America/Phoenix', '-07:00', 'UTC/GMT -07:00', '2022-04-10 19:23:22', '2022-04-10 19:23:22'),
+(165, 'America/Port-au-Prince', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(166, 'America/Port_of_Spain', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(167, 'America/Porto_Velho', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(168, 'America/Puerto_Rico', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(169, 'America/Punta_Arenas', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(170, 'America/Rainy_River', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(171, 'America/Rankin_Inlet', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(172, 'America/Recife', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(173, 'America/Regina', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(174, 'America/Resolute', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(175, 'America/Rio_Branco', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(176, 'America/Santarem', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(177, 'America/Santiago', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(178, 'America/Santo_Domingo', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(179, 'America/Sao_Paulo', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(180, 'America/Scoresbysund', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:22', '2022-04-11 02:23:22'),
+(181, 'America/Sitka', '-08:00', 'UTC/GMT -08:00', '2022-04-10 18:23:22', '2022-04-10 18:23:22'),
+(182, 'America/St_Barthelemy', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(183, 'America/St_Johns', '-02:30', 'UTC/GMT -02:30', '2022-04-10 23:53:22', '2022-04-10 23:53:22'),
+(184, 'America/St_Kitts', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(185, 'America/St_Lucia', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(186, 'America/St_Thomas', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(187, 'America/St_Vincent', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(188, 'America/Swift_Current', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(189, 'America/Tegucigalpa', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(190, 'America/Thule', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(191, 'America/Thunder_Bay', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(192, 'America/Tijuana', '-07:00', 'UTC/GMT -07:00', '2022-04-10 19:23:22', '2022-04-10 19:23:22'),
+(193, 'America/Toronto', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(194, 'America/Tortola', '-04:00', 'UTC/GMT -04:00', '2022-04-10 22:23:22', '2022-04-10 22:23:22'),
+(195, 'America/Vancouver', '-07:00', 'UTC/GMT -07:00', '2022-04-10 19:23:22', '2022-04-10 19:23:22'),
+(196, 'America/Whitehorse', '-07:00', 'UTC/GMT -07:00', '2022-04-10 19:23:22', '2022-04-10 19:23:22'),
+(197, 'America/Winnipeg', '-05:00', 'UTC/GMT -05:00', '2022-04-10 21:23:22', '2022-04-10 21:23:22'),
+(198, 'America/Yakutat', '-08:00', 'UTC/GMT -08:00', '2022-04-10 18:23:22', '2022-04-10 18:23:22'),
+(199, 'America/Yellowknife', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:22', '2022-04-10 20:23:22'),
+(200, 'Antarctica/Casey', '+11:00', 'UTC/GMT +11:00', '2022-04-11 13:23:22', '2022-04-11 13:23:22'),
+(201, 'Antarctica/Davis', '+07:00', 'UTC/GMT +07:00', '2022-04-11 09:23:22', '2022-04-11 09:23:22'),
+(202, 'Antarctica/DumontDUrville', '+10:00', 'UTC/GMT +10:00', '2022-04-11 12:23:22', '2022-04-11 12:23:22'),
+(203, 'Antarctica/Macquarie', '+10:00', 'UTC/GMT +10:00', '2022-04-11 12:23:22', '2022-04-11 12:23:22'),
+(204, 'Antarctica/Mawson', '+05:00', 'UTC/GMT +05:00', '2022-04-11 07:23:22', '2022-04-11 07:23:22'),
+(205, 'Antarctica/McMurdo', '+12:00', 'UTC/GMT +12:00', '2022-04-11 14:23:22', '2022-04-11 14:23:22'),
+(206, 'Antarctica/Palmer', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(207, 'Antarctica/Rothera', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:22', '2022-04-10 23:23:22'),
+(208, 'Antarctica/Syowa', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(209, 'Antarctica/Troll', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(210, 'Antarctica/Vostok', '+06:00', 'UTC/GMT +06:00', '2022-04-11 08:23:22', '2022-04-11 08:23:22'),
+(211, 'Arctic/Longyearbyen', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:22', '2022-04-11 04:23:22'),
+(212, 'Asia/Aden', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(213, 'Asia/Almaty', '+06:00', 'UTC/GMT +06:00', '2022-04-11 08:23:22', '2022-04-11 08:23:22'),
+(214, 'Asia/Amman', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(215, 'Asia/Anadyr', '+12:00', 'UTC/GMT +12:00', '2022-04-11 14:23:22', '2022-04-11 14:23:22'),
+(216, 'Asia/Aqtau', '+05:00', 'UTC/GMT +05:00', '2022-04-11 07:23:22', '2022-04-11 07:23:22'),
+(217, 'Asia/Aqtobe', '+05:00', 'UTC/GMT +05:00', '2022-04-11 07:23:22', '2022-04-11 07:23:22'),
+(218, 'Asia/Ashgabat', '+05:00', 'UTC/GMT +05:00', '2022-04-11 07:23:22', '2022-04-11 07:23:22'),
+(219, 'Asia/Atyrau', '+05:00', 'UTC/GMT +05:00', '2022-04-11 07:23:22', '2022-04-11 07:23:22'),
+(220, 'Asia/Baghdad', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(221, 'Asia/Bahrain', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(222, 'Asia/Baku', '+04:00', 'UTC/GMT +04:00', '2022-04-11 06:23:22', '2022-04-11 06:23:22'),
+(223, 'Asia/Bangkok', '+07:00', 'UTC/GMT +07:00', '2022-04-11 09:23:22', '2022-04-11 09:23:22'),
+(224, 'Asia/Barnaul', '+07:00', 'UTC/GMT +07:00', '2022-04-11 09:23:22', '2022-04-11 09:23:22'),
+(225, 'Asia/Beirut', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(226, 'Asia/Bishkek', '+06:00', 'UTC/GMT +06:00', '2022-04-11 08:23:22', '2022-04-11 08:23:22'),
+(227, 'Asia/Brunei', '+08:00', 'UTC/GMT +08:00', '2022-04-11 10:23:22', '2022-04-11 10:23:22'),
+(228, 'Asia/Chita', '+09:00', 'UTC/GMT +09:00', '2022-04-11 11:23:22', '2022-04-11 11:23:22'),
+(229, 'Asia/Choibalsan', '+08:00', 'UTC/GMT +08:00', '2022-04-11 10:23:22', '2022-04-11 10:23:22'),
+(230, 'Asia/Colombo', '+05:30', 'UTC/GMT +05:30', '2022-04-11 07:53:22', '2022-04-11 07:53:22'),
+(231, 'Asia/Damascus', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(232, 'Asia/Dhaka', '+06:00', 'UTC/GMT +06:00', '2022-04-11 08:23:22', '2022-04-11 08:23:22'),
+(233, 'Asia/Dili', '+09:00', 'UTC/GMT +09:00', '2022-04-11 11:23:22', '2022-04-11 11:23:22'),
+(234, 'Asia/Dubai', '+04:00', 'UTC/GMT +04:00', '2022-04-11 06:23:22', '2022-04-11 06:23:22'),
+(235, 'Asia/Dushanbe', '+05:00', 'UTC/GMT +05:00', '2022-04-11 07:23:22', '2022-04-11 07:23:22'),
+(236, 'Asia/Famagusta', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(237, 'Asia/Gaza', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(238, 'Asia/Hebron', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(239, 'Asia/Ho_Chi_Minh', '+07:00', 'UTC/GMT +07:00', '2022-04-11 09:23:22', '2022-04-11 09:23:22'),
+(240, 'Asia/Hong_Kong', '+08:00', 'UTC/GMT +08:00', '2022-04-11 10:23:22', '2022-04-11 10:23:22'),
+(241, 'Asia/Hovd', '+07:00', 'UTC/GMT +07:00', '2022-04-11 09:23:22', '2022-04-11 09:23:22'),
+(242, 'Asia/Irkutsk', '+08:00', 'UTC/GMT +08:00', '2022-04-11 10:23:22', '2022-04-11 10:23:22'),
+(243, 'Asia/Jakarta', '+07:00', 'UTC/GMT +07:00', '2022-04-11 09:23:22', '2022-04-11 09:23:22'),
+(244, 'Asia/Jayapura', '+09:00', 'UTC/GMT +09:00', '2022-04-11 11:23:22', '2022-04-11 11:23:22'),
+(245, 'Asia/Jerusalem', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:22', '2022-04-11 05:23:22'),
+(246, 'Asia/Kabul', '+04:30', 'UTC/GMT +04:30', '2022-04-11 06:53:22', '2022-04-11 06:53:22'),
+(247, 'Asia/Kamchatka', '+12:00', 'UTC/GMT +12:00', '2022-04-11 14:23:22', '2022-04-11 14:23:22'),
+(248, 'Asia/Karachi', '+05:00', 'UTC/GMT +05:00', '2022-04-11 07:23:23', '2022-04-11 07:23:23'),
+(249, 'Asia/Kathmandu', '+05:45', 'UTC/GMT +05:45', '2022-04-11 08:08:23', '2022-04-11 08:08:23'),
+(250, 'Asia/Khandyga', '+09:00', 'UTC/GMT +09:00', '2022-04-11 11:23:23', '2022-04-11 11:23:23'),
+(251, 'Asia/Kolkata', '+05:30', 'UTC/GMT +05:30', '2022-04-11 07:53:23', '2022-04-11 07:53:23'),
+(252, 'Asia/Krasnoyarsk', '+07:00', 'UTC/GMT +07:00', '2022-04-11 09:23:23', '2022-04-11 09:23:23'),
+(253, 'Asia/Kuala_Lumpur', '+08:00', 'UTC/GMT +08:00', '2022-04-11 10:23:23', '2022-04-11 10:23:23'),
+(254, 'Asia/Kuching', '+08:00', 'UTC/GMT +08:00', '2022-04-11 10:23:23', '2022-04-11 10:23:23'),
+(255, 'Asia/Kuwait', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(256, 'Asia/Macau', '+08:00', 'UTC/GMT +08:00', '2022-04-11 10:23:23', '2022-04-11 10:23:23'),
+(257, 'Asia/Magadan', '+11:00', 'UTC/GMT +11:00', '2022-04-11 13:23:23', '2022-04-11 13:23:23'),
+(258, 'Asia/Makassar', '+08:00', 'UTC/GMT +08:00', '2022-04-11 10:23:23', '2022-04-11 10:23:23'),
+(259, 'Asia/Manila', '+08:00', 'UTC/GMT +08:00', '2022-04-11 10:23:23', '2022-04-11 10:23:23'),
+(260, 'Asia/Muscat', '+04:00', 'UTC/GMT +04:00', '2022-04-11 06:23:23', '2022-04-11 06:23:23'),
+(261, 'Asia/Nicosia', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(262, 'Asia/Novokuznetsk', '+07:00', 'UTC/GMT +07:00', '2022-04-11 09:23:23', '2022-04-11 09:23:23'),
+(263, 'Asia/Novosibirsk', '+07:00', 'UTC/GMT +07:00', '2022-04-11 09:23:23', '2022-04-11 09:23:23'),
+(264, 'Asia/Omsk', '+06:00', 'UTC/GMT +06:00', '2022-04-11 08:23:23', '2022-04-11 08:23:23'),
+(265, 'Asia/Oral', '+05:00', 'UTC/GMT +05:00', '2022-04-11 07:23:23', '2022-04-11 07:23:23'),
+(266, 'Asia/Phnom_Penh', '+07:00', 'UTC/GMT +07:00', '2022-04-11 09:23:23', '2022-04-11 09:23:23'),
+(267, 'Asia/Pontianak', '+07:00', 'UTC/GMT +07:00', '2022-04-11 09:23:23', '2022-04-11 09:23:23'),
+(268, 'Asia/Pyongyang', '+09:00', 'UTC/GMT +09:00', '2022-04-11 11:23:23', '2022-04-11 11:23:23'),
+(269, 'Asia/Qatar', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(270, 'Asia/Qostanay', '+06:00', 'UTC/GMT +06:00', '2022-04-11 08:23:23', '2022-04-11 08:23:23'),
+(271, 'Asia/Qyzylorda', '+05:00', 'UTC/GMT +05:00', '2022-04-11 07:23:23', '2022-04-11 07:23:23'),
+(272, 'Asia/Riyadh', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(273, 'Asia/Sakhalin', '+11:00', 'UTC/GMT +11:00', '2022-04-11 13:23:23', '2022-04-11 13:23:23'),
+(274, 'Asia/Samarkand', '+05:00', 'UTC/GMT +05:00', '2022-04-11 07:23:23', '2022-04-11 07:23:23'),
+(275, 'Asia/Seoul', '+09:00', 'UTC/GMT +09:00', '2022-04-11 11:23:23', '2022-04-11 11:23:23'),
+(276, 'Asia/Shanghai', '+08:00', 'UTC/GMT +08:00', '2022-04-11 10:23:23', '2022-04-11 10:23:23'),
+(277, 'Asia/Singapore', '+08:00', 'UTC/GMT +08:00', '2022-04-11 10:23:23', '2022-04-11 10:23:23'),
+(278, 'Asia/Srednekolymsk', '+11:00', 'UTC/GMT +11:00', '2022-04-11 13:23:23', '2022-04-11 13:23:23'),
+(279, 'Asia/Taipei', '+08:00', 'UTC/GMT +08:00', '2022-04-11 10:23:23', '2022-04-11 10:23:23'),
+(280, 'Asia/Tashkent', '+05:00', 'UTC/GMT +05:00', '2022-04-11 07:23:23', '2022-04-11 07:23:23'),
+(281, 'Asia/Tbilisi', '+04:00', 'UTC/GMT +04:00', '2022-04-11 06:23:23', '2022-04-11 06:23:23'),
+(282, 'Asia/Tehran', '+04:30', 'UTC/GMT +04:30', '2022-04-11 06:53:23', '2022-04-11 06:53:23'),
+(283, 'Asia/Thimphu', '+06:00', 'UTC/GMT +06:00', '2022-04-11 08:23:23', '2022-04-11 08:23:23'),
+(284, 'Asia/Tokyo', '+09:00', 'UTC/GMT +09:00', '2022-04-11 11:23:23', '2022-04-11 11:23:23'),
+(285, 'Asia/Tomsk', '+07:00', 'UTC/GMT +07:00', '2022-04-11 09:23:23', '2022-04-11 09:23:23'),
+(286, 'Asia/Ulaanbaatar', '+08:00', 'UTC/GMT +08:00', '2022-04-11 10:23:23', '2022-04-11 10:23:23'),
+(287, 'Asia/Urumqi', '+06:00', 'UTC/GMT +06:00', '2022-04-11 08:23:23', '2022-04-11 08:23:23'),
+(288, 'Asia/Ust-Nera', '+10:00', 'UTC/GMT +10:00', '2022-04-11 12:23:23', '2022-04-11 12:23:23'),
+(289, 'Asia/Vientiane', '+07:00', 'UTC/GMT +07:00', '2022-04-11 09:23:23', '2022-04-11 09:23:23'),
+(290, 'Asia/Vladivostok', '+10:00', 'UTC/GMT +10:00', '2022-04-11 12:23:23', '2022-04-11 12:23:23'),
+(291, 'Asia/Yakutsk', '+09:00', 'UTC/GMT +09:00', '2022-04-11 11:23:23', '2022-04-11 11:23:23'),
+(292, 'Asia/Yangon', '+06:30', 'UTC/GMT +06:30', '2022-04-11 08:53:23', '2022-04-11 08:53:23'),
+(293, 'Asia/Yekaterinburg', '+05:00', 'UTC/GMT +05:00', '2022-04-11 07:23:23', '2022-04-11 07:23:23'),
+(294, 'Asia/Yerevan', '+04:00', 'UTC/GMT +04:00', '2022-04-11 06:23:23', '2022-04-11 06:23:23'),
+(295, 'Atlantic/Azores', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:23', '2022-04-11 02:23:23'),
+(296, 'Atlantic/Bermuda', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:23', '2022-04-10 23:23:23'),
+(297, 'Atlantic/Canary', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:23', '2022-04-11 03:23:23'),
+(298, 'Atlantic/Cape_Verde', '-01:00', 'UTC/GMT -01:00', '2022-04-11 01:23:23', '2022-04-11 01:23:23'),
+(299, 'Atlantic/Faroe', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:23', '2022-04-11 03:23:23'),
+(300, 'Atlantic/Madeira', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:23', '2022-04-11 03:23:23'),
+(301, 'Atlantic/Reykjavik', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:23', '2022-04-11 02:23:23'),
+(302, 'Atlantic/South_Georgia', '-02:00', 'UTC/GMT -02:00', '2022-04-11 00:23:23', '2022-04-11 00:23:23'),
+(303, 'Atlantic/St_Helena', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:23', '2022-04-11 02:23:23'),
+(304, 'Atlantic/Stanley', '-03:00', 'UTC/GMT -03:00', '2022-04-10 23:23:23', '2022-04-10 23:23:23'),
+(305, 'Australia/Adelaide', '+09:30', 'UTC/GMT +09:30', '2022-04-11 11:53:23', '2022-04-11 11:53:23'),
+(306, 'Australia/Brisbane', '+10:00', 'UTC/GMT +10:00', '2022-04-11 12:23:23', '2022-04-11 12:23:23'),
+(307, 'Australia/Broken_Hill', '+09:30', 'UTC/GMT +09:30', '2022-04-11 11:53:23', '2022-04-11 11:53:23'),
+(308, 'Australia/Darwin', '+09:30', 'UTC/GMT +09:30', '2022-04-11 11:53:23', '2022-04-11 11:53:23'),
+(309, 'Australia/Eucla', '+08:45', 'UTC/GMT +08:45', '2022-04-11 11:08:23', '2022-04-11 11:08:23'),
+(310, 'Australia/Hobart', '+10:00', 'UTC/GMT +10:00', '2022-04-11 12:23:23', '2022-04-11 12:23:23'),
+(311, 'Australia/Lindeman', '+10:00', 'UTC/GMT +10:00', '2022-04-11 12:23:23', '2022-04-11 12:23:23'),
+(312, 'Australia/Lord_Howe', '+10:30', 'UTC/GMT +10:30', '2022-04-11 12:53:23', '2022-04-11 12:53:23'),
+(313, 'Australia/Melbourne', '+10:00', 'UTC/GMT +10:00', '2022-04-11 12:23:23', '2022-04-11 12:23:23'),
+(314, 'Australia/Perth', '+08:00', 'UTC/GMT +08:00', '2022-04-11 10:23:23', '2022-04-11 10:23:23'),
+(315, 'Australia/Sydney', '+10:00', 'UTC/GMT +10:00', '2022-04-11 12:23:23', '2022-04-11 12:23:23'),
+(316, 'Europe/Amsterdam', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(317, 'Europe/Andorra', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(318, 'Europe/Astrakhan', '+04:00', 'UTC/GMT +04:00', '2022-04-11 06:23:23', '2022-04-11 06:23:23'),
+(319, 'Europe/Athens', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(320, 'Europe/Belgrade', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(321, 'Europe/Berlin', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(322, 'Europe/Bratislava', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(323, 'Europe/Brussels', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(324, 'Europe/Bucharest', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(325, 'Europe/Budapest', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(326, 'Europe/Busingen', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(327, 'Europe/Chisinau', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(328, 'Europe/Copenhagen', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(329, 'Europe/Dublin', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:23', '2022-04-11 03:23:23'),
+(330, 'Europe/Gibraltar', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(331, 'Europe/Guernsey', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:23', '2022-04-11 03:23:23'),
+(332, 'Europe/Helsinki', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(333, 'Europe/Isle_of_Man', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:23', '2022-04-11 03:23:23'),
+(334, 'Europe/Istanbul', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(335, 'Europe/Jersey', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:23', '2022-04-11 03:23:23'),
+(336, 'Europe/Kaliningrad', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(337, 'Europe/Kiev', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(338, 'Europe/Kirov', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(339, 'Europe/Lisbon', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:23', '2022-04-11 03:23:23'),
+(340, 'Europe/Ljubljana', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(341, 'Europe/London', '+01:00', 'UTC/GMT +01:00', '2022-04-11 03:23:23', '2022-04-11 03:23:23'),
+(342, 'Europe/Luxembourg', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(343, 'Europe/Madrid', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(344, 'Europe/Malta', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(345, 'Europe/Mariehamn', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(346, 'Europe/Minsk', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(347, 'Europe/Monaco', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(348, 'Europe/Moscow', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(349, 'Europe/Oslo', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(350, 'Europe/Paris', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(351, 'Europe/Podgorica', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(352, 'Europe/Prague', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(353, 'Europe/Riga', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(354, 'Europe/Rome', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(355, 'Europe/Samara', '+04:00', 'UTC/GMT +04:00', '2022-04-11 06:23:23', '2022-04-11 06:23:23'),
+(356, 'Europe/San_Marino', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(357, 'Europe/Sarajevo', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(358, 'Europe/Saratov', '+04:00', 'UTC/GMT +04:00', '2022-04-11 06:23:23', '2022-04-11 06:23:23'),
+(359, 'Europe/Simferopol', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:23', '2022-04-11 05:23:23'),
+(360, 'Europe/Skopje', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:23', '2022-04-11 04:23:23'),
+(361, 'Europe/Sofia', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:24', '2022-04-11 05:23:24'),
+(362, 'Europe/Stockholm', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:24', '2022-04-11 04:23:24'),
+(363, 'Europe/Tallinn', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:24', '2022-04-11 05:23:24'),
+(364, 'Europe/Tirane', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:24', '2022-04-11 04:23:24'),
+(365, 'Europe/Ulyanovsk', '+04:00', 'UTC/GMT +04:00', '2022-04-11 06:23:24', '2022-04-11 06:23:24'),
+(366, 'Europe/Uzhgorod', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:24', '2022-04-11 05:23:24'),
+(367, 'Europe/Vaduz', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:24', '2022-04-11 04:23:24'),
+(368, 'Europe/Vatican', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:24', '2022-04-11 04:23:24'),
+(369, 'Europe/Vienna', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:24', '2022-04-11 04:23:24'),
+(370, 'Europe/Vilnius', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:24', '2022-04-11 05:23:24'),
+(371, 'Europe/Volgograd', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:24', '2022-04-11 05:23:24'),
+(372, 'Europe/Warsaw', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:24', '2022-04-11 04:23:24'),
+(373, 'Europe/Zagreb', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:24', '2022-04-11 04:23:24'),
+(374, 'Europe/Zaporozhye', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:24', '2022-04-11 05:23:24'),
+(375, 'Europe/Zurich', '+02:00', 'UTC/GMT +02:00', '2022-04-11 04:23:24', '2022-04-11 04:23:24'),
+(376, 'Indian/Antananarivo', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:24', '2022-04-11 05:23:24'),
+(377, 'Indian/Chagos', '+06:00', 'UTC/GMT +06:00', '2022-04-11 08:23:24', '2022-04-11 08:23:24'),
+(378, 'Indian/Christmas', '+07:00', 'UTC/GMT +07:00', '2022-04-11 09:23:24', '2022-04-11 09:23:24'),
+(379, 'Indian/Cocos', '+06:30', 'UTC/GMT +06:30', '2022-04-11 08:53:24', '2022-04-11 08:53:24'),
+(380, 'Indian/Comoro', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:24', '2022-04-11 05:23:24'),
+(381, 'Indian/Kerguelen', '+05:00', 'UTC/GMT +05:00', '2022-04-11 07:23:24', '2022-04-11 07:23:24'),
+(382, 'Indian/Mahe', '+04:00', 'UTC/GMT +04:00', '2022-04-11 06:23:24', '2022-04-11 06:23:24'),
+(383, 'Indian/Maldives', '+05:00', 'UTC/GMT +05:00', '2022-04-11 07:23:24', '2022-04-11 07:23:24'),
+(384, 'Indian/Mauritius', '+04:00', 'UTC/GMT +04:00', '2022-04-11 06:23:24', '2022-04-11 06:23:24'),
+(385, 'Indian/Mayotte', '+03:00', 'UTC/GMT +03:00', '2022-04-11 05:23:24', '2022-04-11 05:23:24'),
+(386, 'Indian/Reunion', '+04:00', 'UTC/GMT +04:00', '2022-04-11 06:23:24', '2022-04-11 06:23:24'),
+(387, 'Pacific/Apia', '+13:00', 'UTC/GMT +13:00', '2022-04-11 15:23:24', '2022-04-11 15:23:24'),
+(388, 'Pacific/Auckland', '+12:00', 'UTC/GMT +12:00', '2022-04-11 14:23:24', '2022-04-11 14:23:24'),
+(389, 'Pacific/Bougainville', '+11:00', 'UTC/GMT +11:00', '2022-04-11 13:23:24', '2022-04-11 13:23:24'),
+(390, 'Pacific/Chatham', '+12:45', 'UTC/GMT +12:45', '2022-04-11 15:08:24', '2022-04-11 15:08:24'),
+(391, 'Pacific/Chuuk', '+10:00', 'UTC/GMT +10:00', '2022-04-11 12:23:24', '2022-04-11 12:23:24'),
+(392, 'Pacific/Easter', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:24', '2022-04-10 20:23:24'),
+(393, 'Pacific/Efate', '+11:00', 'UTC/GMT +11:00', '2022-04-11 13:23:24', '2022-04-11 13:23:24'),
+(394, 'Pacific/Fakaofo', '+13:00', 'UTC/GMT +13:00', '2022-04-11 15:23:24', '2022-04-11 15:23:24'),
+(395, 'Pacific/Fiji', '+12:00', 'UTC/GMT +12:00', '2022-04-11 14:23:24', '2022-04-11 14:23:24'),
+(396, 'Pacific/Funafuti', '+12:00', 'UTC/GMT +12:00', '2022-04-11 14:23:24', '2022-04-11 14:23:24'),
+(397, 'Pacific/Galapagos', '-06:00', 'UTC/GMT -06:00', '2022-04-10 20:23:24', '2022-04-10 20:23:24'),
+(398, 'Pacific/Gambier', '-09:00', 'UTC/GMT -09:00', '2022-04-10 17:23:24', '2022-04-10 17:23:24'),
+(399, 'Pacific/Guadalcanal', '+11:00', 'UTC/GMT +11:00', '2022-04-11 13:23:24', '2022-04-11 13:23:24'),
+(400, 'Pacific/Guam', '+10:00', 'UTC/GMT +10:00', '2022-04-11 12:23:24', '2022-04-11 12:23:24'),
+(401, 'Pacific/Honolulu', '-10:00', 'UTC/GMT -10:00', '2022-04-10 16:23:24', '2022-04-10 16:23:24'),
+(402, 'Pacific/Kanton', '+13:00', 'UTC/GMT +13:00', '2022-04-11 15:23:24', '2022-04-11 15:23:24'),
+(403, 'Pacific/Kiritimati', '+14:00', 'UTC/GMT +14:00', '2022-04-11 16:23:24', '2022-04-11 16:23:24'),
+(404, 'Pacific/Kosrae', '+11:00', 'UTC/GMT +11:00', '2022-04-11 13:23:24', '2022-04-11 13:23:24'),
+(405, 'Pacific/Kwajalein', '+12:00', 'UTC/GMT +12:00', '2022-04-11 14:23:24', '2022-04-11 14:23:24'),
+(406, 'Pacific/Majuro', '+12:00', 'UTC/GMT +12:00', '2022-04-11 14:23:24', '2022-04-11 14:23:24'),
+(407, 'Pacific/Marquesas', '-09:30', 'UTC/GMT -09:30', '2022-04-10 16:53:24', '2022-04-10 16:53:24'),
+(408, 'Pacific/Midway', '-11:00', 'UTC/GMT -11:00', '2022-04-10 15:23:24', '2022-04-10 15:23:24'),
+(409, 'Pacific/Nauru', '+12:00', 'UTC/GMT +12:00', '2022-04-11 14:23:24', '2022-04-11 14:23:24'),
+(410, 'Pacific/Niue', '-11:00', 'UTC/GMT -11:00', '2022-04-10 15:23:24', '2022-04-10 15:23:24'),
+(411, 'Pacific/Norfolk', '+11:00', 'UTC/GMT +11:00', '2022-04-11 13:23:24', '2022-04-11 13:23:24'),
+(412, 'Pacific/Noumea', '+11:00', 'UTC/GMT +11:00', '2022-04-11 13:23:24', '2022-04-11 13:23:24'),
+(413, 'Pacific/Pago_Pago', '-11:00', 'UTC/GMT -11:00', '2022-04-10 15:23:24', '2022-04-10 15:23:24'),
+(414, 'Pacific/Palau', '+09:00', 'UTC/GMT +09:00', '2022-04-11 11:23:24', '2022-04-11 11:23:24'),
+(415, 'Pacific/Pitcairn', '-08:00', 'UTC/GMT -08:00', '2022-04-10 18:23:24', '2022-04-10 18:23:24'),
+(416, 'Pacific/Pohnpei', '+11:00', 'UTC/GMT +11:00', '2022-04-11 13:23:24', '2022-04-11 13:23:24'),
+(417, 'Pacific/Port_Moresby', '+10:00', 'UTC/GMT +10:00', '2022-04-11 12:23:24', '2022-04-11 12:23:24'),
+(418, 'Pacific/Rarotonga', '-10:00', 'UTC/GMT -10:00', '2022-04-10 16:23:24', '2022-04-10 16:23:24'),
+(419, 'Pacific/Saipan', '+10:00', 'UTC/GMT +10:00', '2022-04-11 12:23:24', '2022-04-11 12:23:24'),
+(420, 'Pacific/Tahiti', '-10:00', 'UTC/GMT -10:00', '2022-04-10 16:23:24', '2022-04-10 16:23:24'),
+(421, 'Pacific/Tarawa', '+12:00', 'UTC/GMT +12:00', '2022-04-11 14:23:24', '2022-04-11 14:23:24'),
+(422, 'Pacific/Tongatapu', '+13:00', 'UTC/GMT +13:00', '2022-04-11 15:23:24', '2022-04-11 15:23:24'),
+(423, 'Pacific/Wake', '+12:00', 'UTC/GMT +12:00', '2022-04-11 14:23:24', '2022-04-11 14:23:24'),
+(424, 'Pacific/Wallis', '+12:00', 'UTC/GMT +12:00', '2022-04-11 14:23:24', '2022-04-11 14:23:24'),
+(425, 'UTC', '+00:00', 'UTC/GMT +00:00', '2022-04-11 02:23:24', '2022-04-11 02:23:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `child_of` bigint(20) UNSIGNED DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `two_factor_secret` text COLLATE utf8mb4_unicode_ci,
+  `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci,
+  `profile_photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `referred_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `licence_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` tinyint(4) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1 for  approve, 0 for unapprove',
+  `network_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `timezone_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `locale_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `blocked_search` int(11) DEFAULT NULL,
+  `profile_privacy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `profile_posting_privacy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `provider_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `social_profile_photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `status_update_date` timestamp NULL DEFAULT NULL,
+  `last_status_update_date` timestamp NULL DEFAULT NULL,
+  `is_searchable` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `is_show_profileviewers` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `invites_other_users` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `is_invitable` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `last_login_date` timestamp NULL DEFAULT NULL,
+  `last_update_date` timestamp NULL DEFAULT NULL,
+  `latitude` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `longitude` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `credits_left` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `creation_ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_login_ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `child_of`, `name`, `email`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `profile_photo`, `referred_by`, `licence_no`, `type`, `status`, `network_id`, `timezone_id`, `locale_id`, `blocked_search`, `profile_privacy`, `profile_posting_privacy`, `provider`, `provider_id`, `social_profile_photo`, `email_verified_at`, `status_update_date`, `last_status_update_date`, `is_searchable`, `is_show_profileviewers`, `invites_other_users`, `is_invitable`, `last_login_date`, `last_update_date`, `latitude`, `longitude`, `credits_left`, `creation_ip`, `last_login_ip`, `remember_token`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(2, NULL, 'Super Admin', 'superadmin@gmail.com', '$2y$10$KZuoTrb3dkpt7HzIR0TMAOCyGBJRd7r0GmcAVsBc8zq8owSKF5FOe', NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-01 17:23:22', NULL, NULL, '1', '1', '1', '1', '2022-04-11 12:33:31', NULL, NULL, NULL, NULL, '103.255.5.92', '103.255.5.92', NULL, NULL, '2022-04-11 12:33:31', '2022-04-11 17:59:15'),
+(3, NULL, 'Muhammad Naveed Akram', 'muhammadnaveedbd@gmail.com', '$2y$10$TWpbY.lRdZucmykVKIZZS.BfHBUUjwsL85T2nvI1tntlC5RKi8D7u', NULL, NULL, NULL, NULL, NULL, 2, 1, 12, NULL, NULL, NULL, NULL, NULL, 'google', '104791678737045783506', NULL, '2022-04-11 12:44:06', NULL, NULL, '1', '1', '1', '1', '2022-04-29 16:55:08', NULL, NULL, NULL, NULL, '103.255.5.92', '103.161.49.206', NULL, NULL, '2022-04-11 12:44:06', '2022-04-29 16:55:08'),
+(4, NULL, 'Yoshi Tate', 'nusefekyki@mailinator.com', '$2y$10$aKv2lWl0h27ztjGfSy8YmuenbJqBPQvKeqeLPCE9e8cWUz.jlHOGu', NULL, NULL, NULL, NULL, NULL, 2, 0, 10, 176, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '2022-04-11 13:33:22', NULL, NULL, NULL, NULL, '103.255.5.92', '103.255.5.92', NULL, NULL, '2022-04-11 13:33:22', '2022-04-15 17:55:36'),
+(5, NULL, 'Cameron Nathaniel', 'pawe@mailinator.com', '$2y$10$JWuQTvPF0WIKjSapnMqM2uMVX80846bJFoY1VMjnRahScg6Ep1QI2', NULL, NULL, NULL, NULL, NULL, 2, 1, 10, 300, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '2022-04-11 15:22:03', NULL, NULL, NULL, NULL, '103.255.5.92', '103.255.5.92', NULL, NULL, '2022-04-11 15:22:03', '2022-04-18 13:27:10'),
+(7, NULL, 'Jonah xewor', 'demo123@gmail.com', '$2y$10$hBIexGzK.BmqHVKs2TsvPeC/t9TU3zat0frVmlYJClk4lrTho5cUK', NULL, NULL, NULL, NULL, NULL, 2, 1, 10, 18, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '2022-04-15 17:57:22', NULL, NULL, NULL, NULL, '111.119.187.62', '111.119.187.62', NULL, NULL, '2022-04-15 17:57:22', '2022-04-15 17:57:56'),
+(8, NULL, 'Chaney Ross', 'huveq@mailinator.com', '$2y$10$xZ8rSEuvgR3gU10ktRzPWuhZQrx6Ufz4klRFdjMzYFCY5LH8Jnn1y', NULL, NULL, NULL, NULL, NULL, 2, 0, 11, 255, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '2022-04-18 10:58:44', NULL, NULL, NULL, NULL, '103.255.5.93', '103.255.5.93', NULL, NULL, '2022-04-18 10:58:44', '2022-04-18 10:58:44'),
+(9, NULL, 'Fahad Hussnain', 'fahadhussnain102@gmail.com', '$2y$10$fm6Bz4Jrp8loudc1vAbYmerBR/MKMgomrtjrm.wIUf8Rb7d7zFYDW', NULL, NULL, NULL, NULL, NULL, 2, 1, 6, NULL, NULL, NULL, NULL, NULL, 'google', '108517885522792134102', NULL, '2022-04-18 15:56:14', NULL, NULL, '1', '1', '1', '1', '2022-04-29 15:46:15', NULL, NULL, NULL, NULL, '103.140.30.199', '110.93.226.50', NULL, NULL, '2022-04-18 15:56:14', '2022-04-29 15:46:15'),
+(10, NULL, 'Louis Tatyana', 'sajjawaljutt850@gmail.com', '$2y$10$j4LeKbJ1UFdGF1fypv0vT.94iNbrGz1hJm8S3harPwT0Rab0aSMO2', NULL, NULL, NULL, NULL, NULL, 2, 1, 5, 11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '2022-04-18 15:57:55', NULL, NULL, NULL, NULL, '39.42.79.179', '39.42.79.179', NULL, NULL, '2022-04-18 15:57:55', '2022-04-18 15:58:40'),
+(11, NULL, '2 2', 'admin@gmail.com', '$2y$10$fv8Ju0BbEBNEjkBmMxSyuuOxYQvrxkOxph8cSMdBm/YaaEYmLpSR2', NULL, NULL, '1650349275.jpg', 'superadmin', '2321e321343uh', 2, 1, 6, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '2022-04-19 10:55:29', NULL, NULL, NULL, NULL, '103.255.5.113', '103.255.5.113', NULL, NULL, '2022-04-19 10:55:29', '2022-04-19 11:21:15'),
+(12, NULL, 'Rao Awais', 'raoawais888@gmail.com', '$2y$10$7tqSh6nfY3jSy.hAGbqELexE/dKeakXHCxNe8ocrbHxnYhvmqxdPy', NULL, NULL, NULL, NULL, NULL, 2, 1, 10, NULL, NULL, NULL, NULL, NULL, 'google', '110874186254599349792', NULL, '2022-04-27 22:42:38', NULL, NULL, '1', '1', '1', '1', '2022-05-09 21:45:42', NULL, NULL, NULL, NULL, '39.45.48.158', '39.59.87.36', NULL, NULL, '2022-04-27 22:42:38', '2022-05-09 21:45:42'),
+(13, NULL, 'Daria Lana', 'pywako@mailinator.com', '$2y$10$011vf4J.RbWmbOSaWd1kfO6Pon8dq7.KuTLjsiBBXncFVNQ831Fmu', NULL, NULL, NULL, NULL, NULL, 2, 0, 7, 107, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '2022-04-28 04:28:08', NULL, NULL, NULL, NULL, '103.255.4.56', '103.255.4.56', NULL, NULL, '2022-04-28 04:28:08', '2022-04-28 04:28:08'),
+(14, NULL, 'testing 123', 'testing@gmail.com', '$2y$10$9PM7VpZ3Gh8kzVzUocax/O/keAXoYSy4ifkK1Lf8NZGD7BjoDiyVe', NULL, NULL, NULL, NULL, NULL, 2, 1, 5, 15, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '2022-04-28 04:33:54', NULL, NULL, NULL, NULL, '103.255.4.56', '103.255.4.56', NULL, NULL, '2022-04-28 04:33:54', '2022-04-28 04:34:23'),
+(16, NULL, 'Kamran Waris', 'mianwarissb@gmail.com', '$2y$10$McBuoQIpsD/OZ6LiYkO08uCvBa9b9ePh3Fami77gSBQFUl2tBRzde', NULL, NULL, NULL, NULL, NULL, 2, 0, 5, 16, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '2022-04-28 20:25:33', NULL, NULL, NULL, NULL, '119.160.98.241', '119.160.98.241', NULL, NULL, '2022-04-28 20:25:33', '2022-04-28 20:25:33'),
+(17, NULL, 'Imran Arshad', 'imranarshad_libra@yahoo.com', '$2y$10$9TnMuTByeIZyRNjyOTmQVubpBnv3c3SbAJM8hGy.rFyVlTi4Qjma.', NULL, NULL, NULL, NULL, NULL, 2, 0, 6, NULL, NULL, NULL, NULL, NULL, 'facebook', '10221743185350621', NULL, '2022-04-29 11:50:36', NULL, NULL, '1', '1', '1', '1', '2022-04-29 17:28:40', NULL, NULL, NULL, NULL, '39.40.22.82', '39.40.22.82', NULL, NULL, '2022-04-29 11:50:36', '2022-04-29 17:28:40'),
+(18, NULL, 'Jonah damaxi', 'hery@gmail.com', '$2y$10$5QmFLBDF1g7aXiD0L6za5eO2IRbenXHKNX6nUBkS4QB/3PzncWPuu', NULL, NULL, NULL, NULL, NULL, 2, 1, 12, 17, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '2022-04-29 12:41:48', NULL, NULL, NULL, NULL, '111.119.187.51', '111.119.187.51', NULL, NULL, '2022-04-29 12:41:48', '2022-04-29 12:43:26'),
+(23, NULL, 'Kamran Waris', 'mailsicoding@gmail.com', '$2y$10$g/ZxlfnWpY7UHZoiELf5VeQCqz1uz1TcS7yU6N93mGzNdyoDoeUOy', NULL, NULL, NULL, NULL, NULL, 2, 0, 5, 17, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-29 19:16:12', NULL, NULL, '1', '1', '1', '1', '2022-04-29 16:06:16', NULL, NULL, NULL, NULL, '119.160.98.114', '119.160.98.114', 'Rk36kQQMm2Uazlpm5b7RYEpDIm6naYNLMFKn3iY9uAlbtYabgGK4y2X0Qew7', NULL, '2022-04-29 16:06:16', '2022-04-29 19:16:12'),
+(26, NULL, 'sdfsadf asdfasdf', 'omarbhatti999@gmail.com', '$2y$10$AUZV.KG5znKfUoZA0PUuAu/sT6zgnmkP9BjB768hryYMg2NWATSRS', NULL, NULL, NULL, NULL, NULL, 2, 0, 12, 12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '2022-04-29 16:21:12', NULL, NULL, NULL, NULL, '119.160.58.252', '119.160.58.252', NULL, NULL, '2022-04-29 16:21:12', '2022-04-29 16:21:12'),
+(27, NULL, 'Imran Test', 'vettest@mailinator.com', '$2y$10$ldDEuztJqOJI4IF5dyB10eFwrvW8eBrrpzKccRzeBOBQHINix0T3W', NULL, NULL, NULL, NULL, NULL, 2, 1, 5, 274, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-29 16:33:01', NULL, NULL, '1', '1', '1', '1', '2022-04-29 16:30:26', NULL, NULL, NULL, NULL, '39.40.22.82', '39.40.22.82', 'kueSpEI0kxEeRiAFrBteLcG5oCGpfT5IH2ucGZAXbmt6xane499vg0jeLTcI', NULL, '2022-04-29 16:30:26', '2022-04-29 17:38:34'),
+(30, NULL, 'Muhammad awais', 'raoawais@gmail.com', '$2y$10$YQsrYTEC/xMA0l6qJ.z.lua9aQTn8xlziCC7aPRfXuh9ShUD8LwvW', NULL, NULL, NULL, NULL, NULL, 2, 0, 7, 17, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '2022-04-29 17:59:24', NULL, NULL, NULL, NULL, '39.45.142.111', '39.45.142.111', NULL, NULL, '2022-04-29 17:59:24', '2022-04-29 17:59:24'),
+(31, NULL, 'Umar Hayat', 'omarhayyatbhatti999@gmail.com', '$2y$10$q3zPUwypUFK63t1Hn3HWp.JWuQV0bk2vurc6sRzsuymu8wjJDs12q', NULL, NULL, NULL, NULL, NULL, 2, 0, 11, NULL, NULL, NULL, NULL, NULL, 'facebook', '1917090271817972', NULL, '2022-05-09 14:59:38', NULL, NULL, '1', '1', '1', '1', '2022-05-09 14:59:38', NULL, NULL, NULL, NULL, '101.53.242.27', '101.53.242.27', NULL, NULL, '2022-05-09 14:59:38', '2022-05-09 14:59:38'),
+(33, NULL, 'Rao Awais', 'raousman279@gmail.com', '$2y$10$86jGnzt5WCPthWUwyrJESeYU3UsaCHVwTjTF.0jz60NO0ift2jBHe', NULL, NULL, NULL, NULL, NULL, 2, 0, 8, NULL, NULL, NULL, NULL, NULL, 'facebook', '3099730740238871', NULL, '2022-05-09 21:45:02', NULL, NULL, '1', '1', '1', '1', '2022-05-09 21:45:02', NULL, NULL, NULL, NULL, '39.59.87.36', '39.59.87.36', NULL, NULL, '2022-05-09 21:45:02', '2022-05-09 21:45:02'),
+(34, NULL, 'rao awais', 'johnwilliam124556@gmail.com', '$2y$10$IomWzBKGYnaoWz15.1b8Q.iEEfDeOPpG9mgDZJ8yMrUZPPzJKQXO2', NULL, NULL, NULL, NULL, NULL, 2, 0, 6, 17, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '1', '1', '1', '2022-05-09 21:53:15', NULL, NULL, NULL, NULL, '39.59.87.36', '39.59.87.36', NULL, NULL, '2022-05-09 21:53:14', '2022-05-09 21:53:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_education`
+--
+
+CREATE TABLE `user_education` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `degree_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `other_degree` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `school` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `other_school` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `graduation_year` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `internship` tinyint(1) NOT NULL,
+  `residency` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_education`
+--
+
+INSERT INTO `user_education` (`id`, `user_id`, `degree_name`, `other_degree`, `school`, `other_school`, `graduation_year`, `internship`, `residency`, `created_at`, `updated_at`) VALUES
+(1, 11, '3,4', 'testing', '3', NULL, '2022', 1, 1, '2022-04-19 11:20:45', '2022-04-19 11:20:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_employment_infos`
+--
+
+CREATE TABLE `user_employment_infos` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `employment_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `professional_position` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `business_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `business_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `street_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `state` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `zip_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `work_phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `details` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_employment_infos`
+--
+
+INSERT INTO `user_employment_infos` (`id`, `user_id`, `employment_status`, `professional_position`, `business_name`, `business_email`, `street_address`, `country`, `state`, `city`, `zip_code`, `work_phone`, `details`, `created_at`, `updated_at`) VALUES
+(1, 11, 'full_time', 'testing', 'testing', 'testing@gmail.com', 'testing', '7', 'testing', 'testing', 'testing', '234432', 'testing', '2022-04-19 11:19:55', '2022-04-19 11:19:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_member_and_network_levels`
+--
+
+CREATE TABLE `user_member_and_network_levels` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `parent_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_member_and_network_levels`
+--
+
+INSERT INTO `user_member_and_network_levels` (`id`, `parent_id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'Veterinary Professional', 1, '2022-04-11 02:23:20', '2022-04-11 02:23:20'),
+(2, NULL, 'Vet / Vet Tech Student', 1, '2022-04-11 02:23:20', '2022-04-11 02:23:20'),
+(3, NULL, 'Pet Care Professional', 1, '2022-04-11 02:23:20', '2022-04-11 02:23:20'),
+(4, NULL, 'Pet Owner', 1, '2022-04-11 02:23:20', '2022-04-11 02:23:20'),
+(5, 1, 'Veterinarian', 1, '2022-04-11 02:23:20', '2022-04-11 02:23:20'),
+(6, 1, 'Veterinary Specialist', 1, '2022-04-11 02:23:20', '2022-04-11 02:23:20'),
+(7, 1, 'Veterinary Technician', 1, '2022-04-11 02:23:20', '2022-04-11 02:23:20'),
+(8, 1, 'Veterinary Client Care / Hospital Admin', 1, '2022-04-11 02:23:20', '2022-04-11 02:23:20'),
+(9, 2, 'Veterinary Client Care / Hospital Admin', 1, '2022-04-11 02:23:21', '2022-04-11 02:23:21'),
+(10, 2, 'Veterinary Technician Student', 1, '2022-04-11 02:23:21', '2022-04-11 02:23:21'),
+(11, 3, 'Trainer / Animal Behavior Consultant', 1, '2022-04-11 02:23:21', '2022-04-11 02:23:21'),
+(12, 3, 'Breeder', 1, '2022-04-11 02:23:21', '2022-04-11 02:23:21'),
+(13, 3, 'Other Service Provider', 1, '2022-04-11 02:23:21', '2022-04-11 02:23:21'),
+(14, 4, 'Pet Owner', 1, '2022-04-11 02:23:21', '2022-04-11 02:23:21');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_skills_and_expertises`
+--
+
+CREATE TABLE `user_skills_and_expertises` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `skills_expertise_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_skills_and_expertises`
+--
+
+INSERT INTO `user_skills_and_expertises` (`id`, `user_id`, `skills_expertise_id`, `created_at`, `updated_at`) VALUES
+(1, 11, 2, '2022-04-19 11:20:13', '2022-04-19 11:20:13'),
+(2, 11, 4, '2022-04-19 11:20:13', '2022-04-19 11:20:13');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `ads`
+--
+ALTER TABLE `ads`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ads_campaign_id_foreign` (`campaign_id`);
+
+--
+-- Indexes for table `ad_campaigns`
+--
+ALTER TABLE `ad_campaigns`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `announcements`
+--
+ALTER TABLE `announcements`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `buy_member_ship_plans`
+--
+ALTER TABLE `buy_member_ship_plans`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `buy_member_ship_plans_user_id_foreign` (`user_id`),
+  ADD KEY `buy_member_ship_plans_member_ship_plan_id_foreign` (`member_ship_plan_id`);
+
+--
+-- Indexes for table `category_events`
+--
+ALTER TABLE `category_events`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `category_forums`
+--
+ALTER TABLE `category_forums`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `contactus`
+--
+ALTER TABLE `contactus`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `contactus_email_unique` (`email`);
+
+--
+-- Indexes for table `countries`
+--
+ALTER TABLE `countries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `education`
+--
+ALTER TABLE `education`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `education_school_names`
+--
+ALTER TABLE `education_school_names`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `events`
+--
+ALTER TABLE `events`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `events_category_id_foreign` (`category_id`);
+
+--
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `forums`
+--
+ALTER TABLE `forums`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `forums_category_id_foreign` (`category_id`);
+
+--
+-- Indexes for table `forum_members`
+--
+ALTER TABLE `forum_members`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `forum_members_forum_id_foreign` (`forum_id`),
+  ADD KEY `forum_members_member_id_foreign` (`member_id`);
+
+--
+-- Indexes for table `forum_posts`
+--
+ALTER TABLE `forum_posts`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `forum_posts_forum_id_foreign` (`forum_id`);
+
+--
+-- Indexes for table `general_settings`
+--
+ALTER TABLE `general_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `locales`
+--
+ALTER TABLE `locales`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `members`
+--
+ALTER TABLE `members`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `members_memberable_type_memberable_id_index` (`memberable_type`,`memberable_id`);
+
+--
+-- Indexes for table `member_ship_plans`
+--
+ALTER TABLE `member_ship_plans`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `member_ship_plans_network_id_foreign` (`network_id`),
+  ADD KEY `member_ship_plans_member_ship_plan_categories_id_foreign` (`member_ship_plan_categories_id`);
+
+--
+-- Indexes for table `member_ship_plan_categories`
+--
+ALTER TABLE `member_ship_plan_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `networks`
+--
+ALTER TABLE `networks`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `networks_networkable_type_networkable_id_index` (`networkable_type`,`networkable_id`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sessions_user_id_index` (`user_id`),
+  ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
+-- Indexes for table `skill_and_expertises`
+--
+ALTER TABLE `skill_and_expertises`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `time_zones`
+--
+ALTER TABLE `time_zones`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD KEY `users_network_id_foreign` (`network_id`),
+  ADD KEY `users_timezone_id_foreign` (`timezone_id`),
+  ADD KEY `users_locale_id_foreign` (`locale_id`);
+
+--
+-- Indexes for table `user_education`
+--
+ALTER TABLE `user_education`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_employment_infos`
+--
+ALTER TABLE `user_employment_infos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_member_and_network_levels`
+--
+ALTER TABLE `user_member_and_network_levels`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user_skills_and_expertises`
+--
+ALTER TABLE `user_skills_and_expertises`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `ads`
+--
+ALTER TABLE `ads`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `ad_campaigns`
+--
+ALTER TABLE `ad_campaigns`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `announcements`
+--
+ALTER TABLE `announcements`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `buy_member_ship_plans`
+--
+ALTER TABLE `buy_member_ship_plans`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `category_events`
+--
+ALTER TABLE `category_events`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `category_forums`
+--
+ALTER TABLE `category_forums`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `contactus`
+--
+ALTER TABLE `contactus`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `countries`
+--
+ALTER TABLE `countries`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
+
+--
+-- AUTO_INCREMENT for table `education`
+--
+ALTER TABLE `education`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- AUTO_INCREMENT for table `education_school_names`
+--
+ALTER TABLE `education_school_names`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
+-- AUTO_INCREMENT for table `events`
+--
+ALTER TABLE `events`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `forums`
+--
+ALTER TABLE `forums`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `forum_members`
+--
+ALTER TABLE `forum_members`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `forum_posts`
+--
+ALTER TABLE `forum_posts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `general_settings`
+--
+ALTER TABLE `general_settings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `locales`
+--
+ALTER TABLE `locales`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=143;
+
+--
+-- AUTO_INCREMENT for table `members`
+--
+ALTER TABLE `members`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `member_ship_plans`
+--
+ALTER TABLE `member_ship_plans`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `member_ship_plan_categories`
+--
+ALTER TABLE `member_ship_plan_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT for table `networks`
+--
+ALTER TABLE `networks`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `skill_and_expertises`
+--
+ALTER TABLE `skill_and_expertises`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `time_zones`
+--
+ALTER TABLE `time_zones`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=426;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT for table `user_education`
+--
+ALTER TABLE `user_education`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `user_employment_infos`
+--
+ALTER TABLE `user_employment_infos`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `user_member_and_network_levels`
+--
+ALTER TABLE `user_member_and_network_levels`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `user_skills_and_expertises`
+--
+ALTER TABLE `user_skills_and_expertises`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `ads`
+--
+ALTER TABLE `ads`
+  ADD CONSTRAINT `ads_campaign_id_foreign` FOREIGN KEY (`campaign_id`) REFERENCES `ad_campaigns` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `buy_member_ship_plans`
+--
+ALTER TABLE `buy_member_ship_plans`
+  ADD CONSTRAINT `buy_member_ship_plans_member_ship_plan_id_foreign` FOREIGN KEY (`member_ship_plan_id`) REFERENCES `member_ship_plans` (`id`),
+  ADD CONSTRAINT `buy_member_ship_plans_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `events`
+--
+ALTER TABLE `events`
+  ADD CONSTRAINT `events_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `category_events` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `forums`
+--
+ALTER TABLE `forums`
+  ADD CONSTRAINT `forums_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `category_forums` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `forum_members`
+--
+ALTER TABLE `forum_members`
+  ADD CONSTRAINT `forum_members_forum_id_foreign` FOREIGN KEY (`forum_id`) REFERENCES `forums` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `forum_members_member_id_foreign` FOREIGN KEY (`member_id`) REFERENCES `user_member_and_network_levels` (`id`);
+
+--
+-- Constraints for table `forum_posts`
+--
+ALTER TABLE `forum_posts`
+  ADD CONSTRAINT `forum_posts_forum_id_foreign` FOREIGN KEY (`forum_id`) REFERENCES `forums` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `member_ship_plans`
+--
+ALTER TABLE `member_ship_plans`
+  ADD CONSTRAINT `member_ship_plans_member_ship_plan_categories_id_foreign` FOREIGN KEY (`member_ship_plan_categories_id`) REFERENCES `member_ship_plan_categories` (`id`),
+  ADD CONSTRAINT `member_ship_plans_network_id_foreign` FOREIGN KEY (`network_id`) REFERENCES `user_member_and_network_levels` (`id`);
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_locale_id_foreign` FOREIGN KEY (`locale_id`) REFERENCES `locales` (`id`),
+  ADD CONSTRAINT `users_network_id_foreign` FOREIGN KEY (`network_id`) REFERENCES `user_member_and_network_levels` (`id`),
+  ADD CONSTRAINT `users_timezone_id_foreign` FOREIGN KEY (`timezone_id`) REFERENCES `time_zones` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

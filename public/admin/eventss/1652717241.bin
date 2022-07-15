@@ -1,0 +1,81 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 10, 2022 at 06:34 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.15
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `mj-autoparts`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `best_selling_categories`
+--
+
+CREATE TABLE `best_selling_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `status` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `best_selling_categories`
+--
+
+INSERT INTO `best_selling_categories` (`id`, `category_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, '1', '2022-05-10 06:22:26', '2022-05-10 06:22:26'),
+(2, 1, '1', '2022-05-10 06:30:27', '2022-05-10 06:30:27'),
+(3, 2, '1', '2022-05-10 06:30:27', '2022-05-10 06:30:27');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `best_selling_categories`
+--
+ALTER TABLE `best_selling_categories`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `best_selling_categories_category_id_foreign` (`category_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `best_selling_categories`
+--
+ALTER TABLE `best_selling_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `best_selling_categories`
+--
+ALTER TABLE `best_selling_categories`
+  ADD CONSTRAINT `best_selling_categories_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

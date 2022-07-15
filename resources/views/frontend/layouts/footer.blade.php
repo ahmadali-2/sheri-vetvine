@@ -64,7 +64,7 @@ $socialLinks = vetvineHelper::vetvineGeneralSetting();
 
                     <li><a href="#">Membership</a></li>
 
-                    <li><a href="#">Privacy Policy </a></li>
+                    <li><a href="{{ route('privacypolicy.index') }}">Privacy Policy </a></li>
 
                     <li><a href="{{ route('terms.index') }}">Terms of Service </a></li>
 

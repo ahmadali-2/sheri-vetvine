@@ -12,16 +12,17 @@
     }
     #createpost .post_submit_btn{
         background:  #f27222  !important;
-        /* color: #f27222; */
+         color: #fff;
         border: none !important;
         font-family: "Museo Sans 500";
-
+        width: 143px;
+    height: 37px;
+    border-radius: 12px !important;
+    transition: 0.3s all;
     }
+
+
     #createpost .post_submit_btn:hover {
-    /* background-color: transparent; */
-    /* color: #5c7c85; */
-    /* border: 1px solid #5c7c85 !important; */
-    cursor: pointer;
     background: transparent !important;
     border: 2px solid #f27222 !important;
     color: #f27222;
@@ -32,7 +33,7 @@
 <section class="become_member_area">
     <div class="container">
         <h2>
-            <span>Posts
+            <span>Post
             </span>
         </h2>
     </div>
@@ -96,7 +97,7 @@
                               <div class="col-md-12 ml-auto text-right">
 
                                 <div class="form-group text-center">
-                                    <input type="submit" class="btn btn-primary mt-3 post_submit_btn" value="POST">
+                                    <input type="submit" class=" mt-3 post_submit_btn" value="ADD POST">
                                 </div>
                               </div>
                           </div>

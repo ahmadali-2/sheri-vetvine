@@ -120,6 +120,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
+
+
     <script>
         $('.show_confirm').click(function() {
             var id = $(this).attr('data-id');
@@ -163,7 +170,100 @@
         });
 
     </script>
+ <script>
+    $(document).ready(function() {
+        //step1 hide buttons until user select the network level
 
+        // Initialize select2
+        $("#setCountries").select2();
+
+        $('.select2-search--dropdown').css({
+            'border': '1px solid black !important'
+        });
+
+        $('.select2-container').css({
+            'width': '100%'
+        });
+
+        // Read selected option
+        $('#but_read').click(function() {
+            var username = $('#setCountries option:selected').text();
+            var userid = $('#setCountries').val();
+
+            $('#result').html("id : " + userid + ", name : " + username);
+
+        });
+
+        $('.socialbtns').css({
+            'pointer-events': 'none'
+        });
+
+        $('#submitbtn').css({
+            'pointer-events': 'none'
+        });
+    })
+
+    $('.nave_google_captcha').on('click', function() {
+        alert("oj");
+    })
+
+
+    //step2 get value of member level and network level
+    $('.ui-corner-top').on('change', function() {
+
+        var usertype = $(this).find('span').attr('data-memberlevel');
+        $('#setmemberlevel').val(usertype);
+        var networkLevel = $('input[name="networklevel"]:checked').val()
+        console.log(networkLevel)
+        $('#regibtnsmsg').hide();
+        $('.socialbtns').css({
+            'pointer-events': 'visible'
+        });
+        $('#submitbtn').css({
+            'pointer-events': 'visible'
+        });
+        //step3 make custom url against member level and network level
+        var urlarray = ['social/facebook', 'social/twitter', 'social/google'];
+        $('.socialbtns ').each(function(item, index) {
+            $(this).attr('href', urlarray[item]);
+            var anchorlick = $(this).attr('href');
+            var curlink = $(this).attr('href', anchorlick + '/' + usertype + '/' + networkLevel);
+        })
+    })
+
+    $('#nav_id_google').on('click', function() {
+        alert("oaspda");
+    });
+
+    $('#email').on('keyup', function() {
+        $('#emailmsg').empty()
+    })
+    $('#password').on('keyup', function() {
+        $('#passwordmsg').empty()
+    })
+
+    $(document).ready(function() {
+
+        let a = $(".pad-left-captha").find("a").css("display", "none");
+        // console.log(a);
+
+
+    })
+
+
+
+    $('#regform').submit(function(e) {
+
+        if (grecaptcha.getResponse() == '') {
+            toastr.error('Please verify captcha first!');
+            e.preventDefault();
+            return;
+        } else {
+
+        }
+
+    })
+</script>
     <script>
         $(document).ready(function() {
 

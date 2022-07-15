@@ -50,11 +50,11 @@
                                 </div>
                             </div>
 
-                            <div class="btn_change offset-md-5 col-md-6">
-                                <button type="submit " class="btn btn-warning">Change Password</button>
-                            </div>
-                      </div>
 
+                      </div>
+                      <div class="btn_change text-center">
+                        <button type="submit " class="btn btn-warning">Change Password</button>
+                    </div>
                 </form>
                </div>
           </div>

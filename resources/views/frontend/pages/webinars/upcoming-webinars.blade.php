@@ -20,7 +20,7 @@
 
   <section class="main_banner_bottob_label"></section>
 
-    <section class="video-section-wrapper mb-4">
+    <section class="video-section-wrapper mb-4" style="border: none !important;">
         <div class="container">
             <h1 class="Upcoming-webinars mt-2">Upcoming Webinars</h1>
             <form action="{{ route('search_educations') }}" method="post">

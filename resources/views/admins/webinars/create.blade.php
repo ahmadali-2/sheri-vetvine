@@ -56,14 +56,14 @@
                                         <div class="form-group">
                                             <label for="date" class="control-label mb-1">Date</label>
                                             <input id="date" placeholder="" name="date" type="date" class="form-control"
-                                                value="">
+                                                value="" min=<?php echo now()?>>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="time" class="control-label mb-1">Time</label>
                                             <input id="time" placeholder="" name="time" type="time" class="form-control"
-                                                value="">
+                                                value="" min=<?php echo now()?>>
                                         </div>
                                     </div>
                                 </div>

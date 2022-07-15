@@ -28,7 +28,7 @@ class CreateContinueEducationRequest extends FormRequest
             'tags'                               => ['required','string'],
             'category_id'                        => ['required'],
             'event_add_ytlink'                   => ['required'],
-            'date'                               => ['required'],
+            'date'                               => ['required',],
             'time'                               => ['required'],
             'presenter_one'                      => ['required','string'],
             'presenter_one_url'                  => ['required'],

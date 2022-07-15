@@ -109,22 +109,24 @@ $timezones = vetvineHelper::timezones();
 
                                                         <li class="form-check">
                                                             <input class="form-check-input remove_box" type="radio"
-                                                                name="networklevel" id="exampleRadios3" value="12"
-                                                                checked="">
+                                                                name="networklevel" id="exampleRadios3"
+                                                                value="12" checked="">
                                                             <label class="form-check-label" for="exampleRadios3">
                                                                 Trainer / Animal Behavior Consultant
                                                             </label>
                                                         </li>
                                                         <li class="form-check">
                                                             <input class="form-check-input remove_box" type="radio"
-                                                                name="networklevel" id="exampleRadios4" value="13">
+                                                                name="networklevel" id="exampleRadios4"
+                                                                value="13">
                                                             <label class="form-check-label" for="exampleRadios4">
                                                                 Breeder
                                                             </label>
                                                         </li>
                                                         <li class="form-check">
                                                             <input class="form-check-input remove_box" type="radio"
-                                                                name="networklevel" id="exampleRadios5" value="14">
+                                                                name="networklevel" id="exampleRadios5"
+                                                                value="14">
                                                             <label class="form-check-label" for="exampleRadios5">
                                                                 Other Service Provider
                                                             </label>
@@ -142,8 +144,8 @@ $timezones = vetvineHelper::timezones();
 
                                                         <li class="form-check">
                                                             <input class="form-check-input remove_box" type="radio"
-                                                                name="networklevel" id="exampleRadios6" value="15"
-                                                                checked="">
+                                                                name="networklevel" id="exampleRadios6"
+                                                                value="15" checked="">
                                                             <label class="form-check-label" for="exampleRadios6">
                                                                 Pet Owner
                                                             </label>
@@ -183,7 +185,8 @@ $timezones = vetvineHelper::timezones();
 
                                                 <div class="col-sm-12">
                                                     <h6><i class="red-star">*</i>Timezone</h6>
-                                                    <select id="setCountries" name="timezone" class="form-control input_click">
+                                                    <select id="setCountries" name="timezone"
+                                                        class="form-control input_click">
                                                         <option disabled selected>Select TimeZone</option>
 
                                                         @foreach ($timezones as $timezone)
@@ -196,7 +199,6 @@ $timezones = vetvineHelper::timezones();
                                                                     {{ $timezone->timezone }}
                                                                 </option>
                                                             @endif
-
                                                         @endforeach
 
                                                     </select>
@@ -227,17 +229,18 @@ $timezones = vetvineHelper::timezones();
 
 
                                                 <div class="offset-sm-3 my-3 col-sm-4 text-center">
-                                                    <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_SITE_KEY') }}">
-                                                        </div>
+                                                    <div class="g-recaptcha"
+                                                        data-sitekey="{{ env('GOOGLE_RECAPTCHA_SITE_KEY') }}">
+                                                    </div>
 
 
-                                            </div>
+                                                </div>
 
 
 
 
 
-                                                    <div class="col-sm-12 text-center">
+                                                <div class="col-sm-12 text-center">
 
 
 
@@ -245,12 +248,11 @@ $timezones = vetvineHelper::timezones();
                                                         <a href="{{ url('social/facebook') }}"
                                                             class="socialbtns "><i class="fa fa-facebook-square "
                                                                 aria-hidden="true"></i></a>
-                                                        <a href="{{ url('social/twitter') }}"
-                                                            class="socialbtns"><i class="fa fa-twitter-square "
+                                                        <a href="{{ url('social/twitter') }}" class="socialbtns"><i
+                                                                class="fa fa-twitter-square "
                                                                 aria-hidden="true"></i></a>
-                                                        <a href="{{ url('social/google') }}"
-                                                            class="socialbtns"><i class="fa fa-google "
-                                                                aria-hidden="true"></i></a>
+                                                        <a href="{{ url('social/google') }}" class="socialbtns"><i
+                                                                class="fa fa-google " aria-hidden="true"></i></a>
                                                     </div>
 
                                                     <button type="submit" id="submitbtn"
@@ -313,7 +315,8 @@ $timezones = vetvineHelper::timezones();
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="" class="my-custom_label">Email</label>
-                                    <input type="email" id="email" name="email" placeholder="" class="my-custom_input">
+                                    <input type="email" id="email" name="email" placeholder=""
+                                        class="my-custom_input">
                                     <span id="emailmsg" style="color: red;"></span>
 
                                 </div>
@@ -327,7 +330,8 @@ $timezones = vetvineHelper::timezones();
                                 </div>
                             </div>
                             <div class="col-12">
-                                <span class="keep-logged"><label for="checkme"><input type="checkbox" id="checkme">
+                                <span class="keep-logged"><label for="checkme"><input type="checkbox"
+                                            id="checkme">
                                         Keep me logged
                                         in</label></span>
                                 <span class="forgaot">
@@ -366,43 +370,42 @@ $timezones = vetvineHelper::timezones();
 <!-- Login Modal Form  End-->
 
 @section('scripts')
-<script src="https://www.google.com/recaptcha/api.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
-<script>
+    <script>
+        $(document).ready(function() {
+            //step1 hide buttons until user select the network level
 
-$(document).ready(function(){
-//step1 hide buttons until user select the network level
+            // Initialize select2
+            $("#setCountries").select2();
 
-    // Initialize select2
-    $("#setCountries").select2();
+            $('.select2-search--dropdown').css({
+                'border': '1px solid black !important'
+            });
 
-    $('.select2-search--dropdown').css({
-        'border': '1px solid black !important'
-    });
+            $('.select2-container').css({
+                'width': '100%'
+            });
 
-    $('.select2-container').css({
-        'width': '100%'
-    });
+            // Read selected option
+            $('#but_read').click(function() {
+                var username = $('#setCountries option:selected').text();
+                var userid = $('#setCountries').val();
 
-    // Read selected option
-    $('#but_read').click(function(){
-        var username = $('#setCountries option:selected').text();
-        var userid = $('#setCountries').val();
+                $('#result').html("id : " + userid + ", name : " + username);
 
-        $('#result').html("id : " + userid + ", name : " + username);
+            });
 
-    });
+            $('.socialbtns').css({
+                'pointer-events': 'none'
+            });
 
-    $('.socialbtns').css({
-        'pointer-events': 'none'
-    });
-
-    $('#submitbtn').css({
-        'pointer-events': 'none'
-    });
-})
+            $('#submitbtn').css({
+                'pointer-events': 'none'
+            });
+        })
 
         $('.nave_google_captcha').on('click', function() {
             alert("oj");
@@ -449,22 +452,20 @@ $(document).ready(function(){
             // console.log(a);
 
 
-   })
+        })
 
 
 
-   $('#regform').submit(function(e) {
+        $('#regform').submit(function(e) {
 
-if(grecaptcha.getResponse() == ''){
-    toastr.error('Please verify captcha first!');
-    e.preventDefault();
-    return;
-}else{
+            if (grecaptcha.getResponse() == '') {
+                toastr.error('Please verify captcha first!');
+                e.preventDefault();
+                return;
+            } else {
 
-}
+            }
 
-})
-
-</script>
-
+        })
+    </script>
 @endsection

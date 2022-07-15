@@ -13,6 +13,17 @@
 .bottom_heading{
     color: 'black';
 }
+#pay_event_price{
+    line-height: 50px;
+    color: #fff;
+    font-family: 'Museo Sans 500';
+    transition: 0.3s all
+    margin-bottom: 30px;
+}
+#pay_event_price:hover{
+    background: transparent !important;
+    color: #f27222;;
+}
 </style>
 <div class="popup-body">
     <form id="event_detail_submit">

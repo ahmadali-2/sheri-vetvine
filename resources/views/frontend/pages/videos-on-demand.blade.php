@@ -3,7 +3,7 @@
     <main>
         <section class="video-section-wrapper mb-4">
             <div class="container">
-                
+
                 <h1 class="Upcoming-webinars mt-2">Videos on Demand</h1>
                 {{-- <input type="text"> --}}
                 {{ $avg }}
@@ -39,7 +39,7 @@
                     <li class="last_li">
                         <label>Sponsor</label>
                         <div class="form-group">
-                            <select name="sponser_id" id="sponser_id" class="form-control filter-slect mt-3 sponser_id ">
+                            <select name="sponser_id" id="sponser_id" class="form-control filter-slect  sponser_id ">
                                 <option value="" selected disabled>Select Sponsor</option>
                                 @forelse ($sponsor as $item)
                                     <option value="{{ $item->id }}">{{ $item->sponser_name }}</option>
@@ -50,7 +50,7 @@
                         </div>
                     </li>
                     <li>
-                        <button class="btn filter-searchBtn search_btn_hover" id="search" type="button">Search</button>
+                        <button class="btn filter-searchBtn search_btn_hover" id="search" type="button" style="margin-top: 10px;">Search</button>
                     </li>
                 </ul>
                 <ul class="page-link-list">

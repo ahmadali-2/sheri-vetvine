@@ -254,7 +254,7 @@
 
                                     </div>
                                     <div class="public2-description">
-                                       <b class="ml-2 text-uppercase"> Irure Aut Mollitia Q</b>
+                                       <b class="ml-2 text-uppercase">{{ $videos->presented_by }}</b>
                                     </div>
                                 </div>
 
@@ -264,12 +264,11 @@
                                     <div class="public2-title sponsor-title">
                                         Sponsor(s): vetvine :
                                     </div>
-                                                                    <div class="public2-description spon-descripton">
-                                            Xanthus Mason
-                                        </div>
-                                                                    <div class="public2-description spon-descripton">
-                                            Mollie Alvarez
-                                        </div>
+                                    {{-- @foreach ($videos->members as $items) --}}
+                                    <div class="public2-description spon-descripton">
+                                        John Mathews
+                                    </div>
+                                  {{-- @endforeach --}}
                                   </div>
 
                                   <div class="publication-detail register_btn">

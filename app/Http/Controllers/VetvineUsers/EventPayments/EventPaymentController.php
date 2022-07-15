@@ -70,8 +70,8 @@ class EventPaymentController extends Controller
             $stripeResponse =Stripe\Charge::create ([
                     "amount" => $request->event_price*100,
                     "currency" => "USD",
-                    "source" => $request->stripeToken,
-                    // "source" => 'tok_visa',
+                    // "source" => $request->stripeToken,
+                    "source" => 'tok_visa',
                     "description" => "Vetvine Event Payment Subscription"
             ]);
 

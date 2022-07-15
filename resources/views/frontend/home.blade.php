@@ -65,7 +65,7 @@
                             <form method="POST" action="{{ route('verification.send') }}">
                                 @csrf
                                 <div class="flex items-center justify-center mt-4">
-                                    <x-jet-button class="" type="submit"
+                                    <x-jet-button class="verify_btn" type="submit"
                                         style="margin-left: 20%;  background-color: #f27222;">
                                         {{ __('Resend Verification Email') }}
                                     </x-jet-button>

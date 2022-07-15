@@ -13,6 +13,15 @@
     .bottom_heading{
         color: 'black';
     }
+    .billing-btn button{
+        transition: 0.3s  all;
+        font-family: "Museo Sans 500";
+    }
+    .billing-btn button:hover{
+        border: 2px solid #f27222 !important;
+        background: transparent;
+        color: #f27222;
+    }
     </style>
     <div class="popup-body">
         <h2 class="member-login"><span>Course Registration</span></h2>

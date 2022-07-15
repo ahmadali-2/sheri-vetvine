@@ -5,17 +5,17 @@
         <div class="row heading_term">
             <div class="col-md-12">
                 <div class="d-flex justify-content-center">
-                    <h3 class="mt-3">{{ isset($terms->page_title) ? $terms->page_title : 'N/A' }}</h3>
+                    <h3 class="mt-3">{{ isset($privacy->page_title) ? $privacy->page_title : 'N/A' }}</h3>
                 </div>
             </div>
         </div>
-        <div class="row term_policy mt-5">
+        <div class="row term_policy">
             <div class="col-md-9">
                 <div>
-                    @if (empty($terms->page_desc))
+                    @if (empty($privacy->page_desc))
                     <h5>No data found</h5>
                     @else
-                    {!! $terms->page_desc ?? '' !!}
+                    {!! $privacy->page_desc ?? '' !!}
                     @endif
                 </div>
             </div>

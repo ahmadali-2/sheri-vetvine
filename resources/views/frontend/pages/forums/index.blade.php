@@ -89,7 +89,7 @@
 
                 </div>
             </div>
-            <div class="container">
+            <div class="container mb-5">
                 <div id="render-form-category-div">
                     @include('frontend.pages.forums.form_category_data')
                 </div>

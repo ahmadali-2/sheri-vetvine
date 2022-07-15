@@ -580,6 +580,7 @@ input:focus {
 .home_banner_btn:hover {
     background: transparent;
     border: 2px solid #f27222 !important;
+    color: #f27222;
 }
 
 .main_banner_box {
@@ -618,15 +619,13 @@ input:focus {
     position: relative;
     border: solid 1px #f27222;
     font-family: "Museo Sans 500";
+    transition: 0.5s linear;
 }
 
 .btn_why_vetvine:hover {
-    width: 180px;
-    height: 40px;
-    border-radius: 12px;
-    background-color: #fff;
+    background: transparent;
+    border: 2px solid #f27222 !important;
     color: #f27222;
-    border: solid 1px #f27222;
 }
 
 .main_banner_bottob_label {
@@ -1247,9 +1246,8 @@ input:focus {
 }
 
 .send-msg:hover {
-    box-shadow: 1px 3px 5px #E9E9E9;
-    transform: translateY(-1px);
-    background-color: #fff;
+    background: transparent;
+    border: 2px solid #f27222 !important;
     color: #f27222;
 }
 
@@ -2652,7 +2650,7 @@ select#fav_show:focus>option:checked {
     display: inline-block;
     border: 1px solid #f27222;
     transition: all 0.5s;
-    border-radius: 30px;
+    border-radius: 12px;
     line-height: 15px;
     font-family: "Museo Sans 500";
     /* margin-top: 10px; */
@@ -2739,10 +2737,10 @@ select#fav_show:focus>option:checked {
     border: 1px solid #f27222 !important;
     text-align: center;
     color: #fff;
-    border-radius: 30px;
+    border-radius: 12px;
     display: inline-block;
     background-color: #f27222;
-    font-size: 13px;
+    font-size: 14px;
     text-transform: capitalize;
     transition: all 0.3s;
     width: 125px;
@@ -3906,7 +3904,7 @@ select#fav_show:focus>option:checked {
         padding-bottom: 0;
     }
     .subdrop {
-        top: 57px;
+        top: 52px;
     }
     .edit-profile-list .subdrop {
         top: 53px;
@@ -3968,7 +3966,7 @@ select#fav_show:focus>option:checked {
         min-height: auto;
     }
     .subdrop {
-        top: 69px;
+        top: 52px;
     }
     .edit-profile-list .subdrop {
         top: 72px;
@@ -7710,6 +7708,8 @@ ul {
     right: 70px;
     bottom: 15px;
     font-family: "Museo Sans 500";
+    border-radius: 12px;
+    background-color: #f27222;
 }
 
 .btn-cancel a {
@@ -7906,6 +7906,9 @@ ul {
     .droplink {
         margin: 0px 15px;
     }
+    .subdrop3 {
+        width: 260px;
+    }
 }
 
 @media (max-width:1200px) {
@@ -8079,26 +8082,22 @@ ul {
     color: #fff;
     border: 1px solid #f27222;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 12px;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     font-family: "Museo Sans 500";
+    transition: 0.3s all;
+    width: 143px;
+    height: 37px;
 }
 
 .post_btn:hover {
-    /* background-color: transparent; */
-    /* color: #5c7c85; */
-    /* border: 1px solid #5c7c85 !important; */
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
+
     background: transparent;
     border: 2px solid #f27222 !important;
     color: #f27222;
-    font-family: "Museo Sans 500";
+
 }
 
 #createpost input,
@@ -8122,7 +8121,7 @@ ul {
 @media(max-width:850px) and (min-width:768px) {
     .top-social {
         min-width: 91%;
-        margin-left: 120px;
+        margin-left: 0px;
     }
 }
 
@@ -8554,7 +8553,13 @@ line-height: 31px;
     background-color: #f27222 !important;
     outline: none;
     font-family: "Museo Sans 500";
+    border-radius: 12px;
+    transition: 0.3s all;
+    color: #fff;
+    font-size: 14px;
 }
+
+
 
 .change_password .content input {
     border: 1px solid #5c7c85 !important;
@@ -8598,7 +8603,8 @@ line-height: 31px;
     font-family: "Museo Sans 500";
     text-transform: uppercase;
     background-color: #f27222;
-    margin: 30px 0px 38px 92px;
+    /* margin: 30px 0px 38px 92px; */
+    margin-top: 30px;
 }
 
 .btn_change button:hover {
@@ -8828,14 +8834,24 @@ p {
         top: 50%;
         background-color: #f27222;
     }
-    .Section_top {
+    /* .Section_top {
         width: 100%;
         min-height: 100%;
         background-image: url(../images/bg_1.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
-    }
+    } */
+
+.Section_top {
+    width: 100%;
+    min-height: 100%;
+    background-image: url(../images/bg_1.jpg);
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+    /* background-position: center; */
+    background-size: 100% 100%;
+}
     .main_banner_grow,
     .register_main_banner {
         background-size: cover;
@@ -9076,7 +9092,13 @@ p {
     background-color: #f27222;
     padding: 10px 30px;
     color: #fff;
-    border-radius: 20px;
+    border-radius: 12px;
+    transition: 0.5s linear;
+}
+.register_btn a:hover{
+    background: transparent;
+    border: 2px solid #f27222 !important;
+    color: #f27222;
 }
 
 .desription_p {
@@ -9086,7 +9108,7 @@ p {
 
 .upcoming-home-bg2 {
     min-height: 490px;
-    background-image: linear-gradient(90deg, rgb(244, 244, 244, 1) 50%, rgba(255, 255, 255, 0.1) 70%), url(../images/bg_1.jpg);
+    background-image: linear-gradient(90deg, rgb(244, 244, 244, 1) 50%, rgba(255, 255, 255, 0.1) 70%), url('../images/bg_pay.png');
     border-bottom: 10px solid #f27222 !important;
     background-repeat: no-repeat;
     background-size: cover;
@@ -9169,4 +9191,124 @@ p {
 }
 .public2-title img{
     margin-left: 10px;
+}
+
+#register_event
+{
+    background-color: #f27222;
+    padding: 10px 30px;
+    color: #fff;
+    border-radius: 12px;
+    transition: 0.5s linear;
+    font-family: "Museo Sans 500";
+}
+#register_event:hover
+{
+    background: transparent;
+    border: 2px solid #f27222 !important;
+    color: #f27222;
+}
+
+.verify_btn{
+    border-radius: 12px;
+}
+
+#replyfrm_1 button{
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: "Museo Sans 500";
+}
+.upcoming_btn{
+    background-color: #f27222 !important;
+    padding: 10px 30px;
+    color: #fff;
+    border-radius: 12px;
+    transition: 0.5s linear;
+    font-family: "Museo Sans 500";
+    border: 2px solid #f27222 !important;
+}
+.upcoming_btn:hover
+{
+    background: transparent !important;
+    border: 2px solid #f27222 !important;
+    color: #f27222;
+}
+.publication-detail.register_btn .btn{
+
+    background-color: #f27222;
+    padding: 10px 30px;
+    color: #fff;
+    border-radius: 20px;
+    font-family: "Museo Sans 500";
+    transition: 0.3s all;
+}
+.publication-detail.register_btn .btn:hover{
+
+    background: transparent;
+    border: 2px solid #f27222 !important;
+    color: #f27222;
+}
+#register_event
+{
+    background-color: #f27222;
+    padding: 10px 30px;
+    color: #fff;
+    border-radius: 12px;
+    transition: 0.5s linear;
+    font-family: "Museo Sans 500";
+}
+#register_event:hover
+{
+    background: transparent;
+    border: 2px solid #f27222 !important;
+    color: #f27222;
+}
+
+.verify_btn{
+    border-radius: 12px;
+}
+
+#replyfrm_1 button{
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: "Museo Sans 500";
+}
+.upcoming_btn{
+    background-color: #f27222 !important;
+    padding: 10px 30px;
+    color: #fff;
+    border-radius: 12px;
+    transition: 0.5s linear;
+    font-family: "Museo Sans 500";
+    border: 2px solid #f27222 !important;
+}
+.upcoming_btn:hover
+{
+    background: transparent !important;
+    border: 2px solid #f27222 !important;
+    color: #f27222;
+}
+.publication-detail.register_btn .btn{
+
+    background-color: #f27222;
+    padding: 10px 30px;
+    color: #fff;
+    border-radius: 20px;
+    font-family: "Museo Sans 500";
+    transition: 0.3s all;
+}
+.publication-detail.register_btn .btn:hover{
+
+    background: transparent;
+    border: 2px solid #f27222 !important;
+    color: #f27222;
+}
+.change_password .input_field{
+    width: 100%;
+}
+
+#comments_share_data_0  form .form-group  button{
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: "Museo Sans 500";
 }

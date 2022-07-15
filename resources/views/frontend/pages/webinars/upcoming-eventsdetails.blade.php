@@ -245,7 +245,30 @@
         .tim  .public2-description{
             width: 86%;
         }
+
+        .view_time_zone{
+            color: #f27222;
+        }
+        .view_time_zone:hover{
+            color: #5c7c85;
+        }
         /* End */
+
+
+        #ajax-book-model .btn-primary {
+    color: #fff;
+    background-color: #f27222;
+    border-color: #f27222;
+    border-radius: 12px;
+    width: 102px;
+    transition: 0.3s all;
+    border: 2px solid #f27222 !important;
+}
+#ajax-book-model .btn-primary:hover{
+    background: transparent;
+    border: 2px solid #f27222 !important;
+    color: #f27222;
+}
     </style>
     <?php
     use App\Models\Generals\TimeZone;
@@ -379,7 +402,7 @@
                                 </div>
                                 @auth
                                     <div class="public2-info" style="margin-left: 12px; margin-bottom:0px ;">
-                                        <a href="{{ $eventdetail->timezone_url }}"> View Other Timezone</a>
+                                        <a href="{{ $eventdetail->timezone_url }}" class="view_time_zone"> View Other Timezone</a>
                                     </div>
                                 @endauth
                             </div>
@@ -503,8 +526,8 @@
                     </div> --}}
                     @auth
                         <div class="row">
-                            <button id="calendarModelButtonAction" type="button" class="btn btn-primary" data-toggle="modal" data-target="#calendarModel" hidden><i class="fa fa-calendar" aria-hidden="true"></i> - Add to Calendar</button>
-                            <button id="calendarModelButton" type="button" class="btn btn-primary" style="background-color: #f27222"><i class="fa fa-calendar" aria-hidden="true"></i> - Add to Calendar</button>
+                            <button id="calendarModelButtonAction" type="button" class="upcoming_btn" data-toggle="modal" data-target="#calendarModel" hidden><i class="fa fa-calendar" aria-hidden="true"></i> </button>
+                            <button id="calendarModelButton" type="button" class="upcoming_btn" style="background-color: #f27222"><i class="fa fa-calendar" aria-hidden="true"></i> - Add to Calendar</button>
                         </div>
                     @endauth
                     {{-- <div class="row">
@@ -549,7 +572,7 @@
                                                     <img src="https://www.w3schools.com/howto/img_avatar.png"
                                                         class="avatar ">
                                                     <span class="font-weight-bold ml-2">
-                                                        {{ $review->users->name ? $review->users->name : 'Annonyomus' }}</span>{{ $review->created_at->diffForHumans() }}
+                                                        {{ $review->users->name ? $review->users->name : 'Annonyomus' }} </span>{{ $review->created_at->diffForHumans() }}
                                                     <p class="mt-1">
                                                         @for ($i = 1; $i <= $review->star_rating; $i++)
                                                             <span><i class="fa fa-star text-warning"></i></span>
@@ -560,7 +583,7 @@
                                                         {{ $review->comments }}
                                                     </p>
                                                     @if (auth()->user()->id == $review->user_id)
-                                                        <button class="edit" type="button" data-toggle="modal"
+                                                        <button class="edit" style="background: transparent;" type="button" data-toggle="modal"
                                                             data-target="#ajax-book-model" data-id="{{ $review->id }}" data-comment="{{ $review->comments }}">
                                                             <i class="fas fa-edit text-primary"></i></button>
                                                     @endif
@@ -619,7 +642,7 @@
                                                 </div>
                                             </div>
                                             <div class="mt-3 ">
-                                                <button class="btn btn-sm py-2 px-3 btn-info">Submit
+                                                <button class="upcoming_btn  py-2 px-3 btn-info">Submit
                                                 </button>
                                             </div>
                                         </form>

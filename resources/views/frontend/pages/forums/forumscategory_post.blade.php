@@ -5,6 +5,15 @@
         .forum_table button{
             background: transparent !important
         }
+
+        .create_post_btn{
+    width: 143px;
+    height: 37px;
+    border-radius: 12px;
+    background-color: #f27222;
+    transition: 0.3s all;
+}
+
     </style>
 @endsection
 @section('content')
@@ -87,14 +96,14 @@
             </div>
             @auth
                 <div class="col-md-4 col-lg-3 ml-auto text-right ">
-                    <a class="btn btn-primary post_btn " href="{{ route('createforumpost',$forumId ) }}">
+                    <a class="create_post_btn post_btn" href="{{ route('createforumpost',$forumId ) }}">
                         Create Post
                     </a>
                 </div>
             @endauth
             </div>
         </div>
-        <div class="container">
+        <div class="container mb-5">
             <div class="row">
                 <div class="col-sm-12">
 
